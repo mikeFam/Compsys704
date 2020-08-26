@@ -9,34 +9,40 @@ Controller(
 	signal selectM, selectA;
 	
 	{//Manual
-		await(selectM && !request);
-		{while(true){present(pusherExtendM){emit pusherExtend;} pause;}}
-		||
-		{while(true){present(vacOnM){emit vacOn;} pause;}}
-		||
-		{while(true){present(armSourceM){emit armSource;} pause;}}
-		||
-		{while(true){present(armDestM){emit armDest;} pause;}}
+		while(true){
+			await(selectM);
+			abort(selectA){
+				{while(true){present(pusherExtendM){emit pusherExtend;} pause;}}
+				||
+				{while(true){present(vacOnM){emit vacOn;} pause;}}
+				||
+				{while(true){present(armSourceM){emit armSource;} pause;}}
+				||
+				{while(true){present(armDestM){emit armDest;} pause;}}
+			}
+		}
 	}	
 	||
 	{//Auto
 		while(true){
 			await(selectA);
-			await(request && !empty);
-			abort(pusherExtended){
-				sustain pusherExtend;
-			}
-			pause;
-			await(pusherRetracted);
-			abort(armAtSource){
-				sustain armSource;
-			}
-			pause;
-			abort(armAtDest){
-				{sustain vacOn;}
-				||
-				{await (WPgripped);
-				sustain armDest;}
+			abort(selectM){
+				await(request && !empty);
+				abort(pusherExtended){
+					sustain pusherExtend;
+				}
+				pause;
+				await(pusherRetracted);
+				abort(armAtSource){
+					sustain armSource;
+				}
+				pause;
+				abort(armAtDest){
+					{sustain vacOn;}
+					||
+					{await (WPgripped);
+					sustain armDest;}
+				}
 			}
 		}
 	}
@@ -46,13 +52,11 @@ Controller(
 		while(true){
 			if((Integer)#mode == 1){
 				emit selectM;
-				pause;	
 			}
 			else{
 				emit selectA;
-				pause;
 			}
-		pause;
+			pause;
 		}
 	}
 }
