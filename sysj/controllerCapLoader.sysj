@@ -1,4 +1,4 @@
-Controller(
+ControllerCapLoader(
 		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request;
 		output signal pusherExtend,vacOn,armSource,armDest;
 		input Integer signal mode;

@@ -22,6 +22,7 @@ public class PlantCapper extends ClockDomain{
   public Signal gripperZAxisLifted = new Signal("gripperZAxisLifted", Signal.OUTPUT);
   public Signal gripperTurnHomePos = new Signal("gripperTurnHomePos", Signal.OUTPUT);
   public Signal gripperTurnFinalPos = new Signal("gripperTurnFinalPos", Signal.OUTPUT);
+<<<<<<< HEAD
   public Signal bottleAtPos4E = new Signal("bottleAtPos4E", Signal.OUTPUT);
   public Signal gripperZAxisLoweredE = new Signal("gripperZAxisLoweredE", Signal.OUTPUT);
   public Signal gripperZAxisLiftedE = new Signal("gripperZAxisLiftedE", Signal.OUTPUT);
@@ -945,6 +946,17 @@ public class PlantCapper extends ClockDomain{
     }
   }
 
+=======
+  public Signal gripperZAxisLoweredM = new Signal("gripperZAxisLoweredM", Signal.OUTPUT);
+  public Signal gripperZAxisLiftedM = new Signal("gripperZAxisLiftedM", Signal.OUTPUT);
+  public Signal gripperTurnHomePosM = new Signal("gripperTurnHomePosM", Signal.OUTPUT);
+  public Signal gripperTurnFinalPosM = new Signal("gripperTurnFinalPosM", Signal.OUTPUT);
+  private int S6091 = 1;
+  
+  private int[] ends = new int[2];
+  private int[] tdone = new int[2];
+  
+>>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
   public void runClockDomain(){
     for(int i=0;i<ends.length;i++){
       ends[i] = 0;
@@ -952,6 +964,7 @@ public class PlantCapper extends ClockDomain{
     }
     
     RUN: while(true){
+<<<<<<< HEAD
       switch(S8293){
         case 0 : 
           S8293=0;
@@ -1030,23 +1043,46 @@ public class PlantCapper extends ClockDomain{
             S8293=0;
             break RUN;
           }
+=======
+      switch(S6091){
+        case 0 : 
+          S6091=0;
+          break RUN;
+        
+        case 1 : 
+          S6091=2;
+          S6091=2;
+          active[1]=0;
+          ends[1]=0;
+          S6091=0;
+          break RUN;
+>>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
         
       }
     }
   }
 
   public void init(){
+<<<<<<< HEAD
     char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
     char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+=======
+    char [] active1 = {1, 1};
+    char [] paused1 = {0, 0};
+    char [] suspended1 = {0, 0};
+>>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
     paused = paused1;
     active = active1;
     suspended = suspended1;
     // Now instantiate all the local signals ONLY
+<<<<<<< HEAD
     bottleClamp_1 = new Signal();
     bottleNotClamp_1 = new Signal();
     capGrip_1 = new Signal();
     capNotGrip_1 = new Signal();
+=======
+>>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
     // --------------------------------------------------
   }
   
@@ -1082,6 +1118,7 @@ public class PlantCapper extends ClockDomain{
       gripperZAxisLifted.setpreclear();
       gripperTurnHomePos.setpreclear();
       gripperTurnFinalPos.setpreclear();
+<<<<<<< HEAD
       bottleAtPos4E.setpreclear();
       gripperZAxisLoweredE.setpreclear();
       gripperZAxisLiftedE.setpreclear();
@@ -1091,6 +1128,12 @@ public class PlantCapper extends ClockDomain{
       bottleNotClamp_1.setpreclear();
       capGrip_1.setpreclear();
       capNotGrip_1.setpreclear();
+=======
+      gripperZAxisLoweredM.setpreclear();
+      gripperZAxisLiftedM.setpreclear();
+      gripperTurnHomePosM.setpreclear();
+      gripperTurnFinalPosM.setpreclear();
+>>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -1125,6 +1168,7 @@ public class PlantCapper extends ClockDomain{
       gripperTurnHomePos.setClear();
       gripperTurnFinalPos.sethook();
       gripperTurnFinalPos.setClear();
+<<<<<<< HEAD
       bottleAtPos4E.sethook();
       bottleAtPos4E.setClear();
       gripperZAxisLoweredE.sethook();
@@ -1139,6 +1183,16 @@ public class PlantCapper extends ClockDomain{
       bottleNotClamp_1.setClear();
       capGrip_1.setClear();
       capNotGrip_1.setClear();
+=======
+      gripperZAxisLoweredM.sethook();
+      gripperZAxisLoweredM.setClear();
+      gripperZAxisLiftedM.sethook();
+      gripperZAxisLiftedM.setClear();
+      gripperTurnHomePosM.sethook();
+      gripperTurnHomePosM.setClear();
+      gripperTurnFinalPosM.sethook();
+      gripperTurnFinalPosM.setClear();
+>>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         cylPos5ZaxisExtend.gethook();
