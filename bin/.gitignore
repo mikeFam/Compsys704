@@ -4,3 +4,10 @@
 /org/
 /ControllerConveyor.class
 /PlantConveyor.class
+/ControllerCapLoader.class
+/ControllerCapper.class
+/ControllerFiller.class
+/PlantCapLoader$1GUI.class
+/PlantCapLoader.class
+/PlantCapper.class
+/PlantFiller.class
