@@ -1,0 +1,79 @@
+ControllerCapper(
+		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+		output signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+		input Integer signal mode;
+		input signal cylPos5ZaxisExtendM, gripperTurnRetractM, gripperTurnExtendM, capGripperPos5ExtendM, cylClampBottleExtendM;
+		)
+->
+{
+	signal selectM, selectA;
+	
+	{//Manual
+		while(true){
+			await(selectM);
+			abort(selectA){
+				{while(true){present(cylPos5ZaxisExtendM){emit cylPos5ZaxisExtend;} pause;}}
+				||
+				{while(true){present(gripperTurnRetractM){emit gripperTurnRetract;} pause;}}
+				||
+				{while(true){present(gripperTurnExtendM){emit gripperTurnExtend;} pause;}}
+				||
+				{while(true){present(capGripperPos5ExtendM){emit capGripperPos5Extend;} pause;}}
+				||
+				{while(true){present(cylClampBottleExtendM){emit cylClampBottleExtend;} pause;}}
+			}
+		}
+	}	
+	||
+	{//Auto
+		while (true){
+			await(selectA);
+			signal jobDone;
+			System.out.println("Auto Mode");
+			abort(selectM){
+				await(bottleAtPos4);
+				{abort (immediate (gripperZAxisLifted && jobDone)) {
+					System.out.println("Bottle Clamped");
+					sustain cylClampBottleExtend;
+					}
+				System.out.println("Unclamp the bottle");
+				}
+				||
+				{abort(gripperZAxisLowered && gripperTurnFinalPos) {
+					System.out.println("Gripper lowering");
+					{sustain cylPos5ZaxisExtend;}
+					||
+					{await (gripperZAxisLowered);
+					{System.out.println("Gripper twisting");
+					sustain gripperTurnExtend;}
+					||
+					{System.out.println("Cap gripped");
+					sustain capGripperPos5Extend;}
+					}}
+				System.out.println("Release/ungrip cap");
+				abort (gripperTurnHomePos) {
+					System.out.println("Gripper untwisting");
+					sustain gripperTurnRetract;
+				}
+				System.out.println("Gripper untwisted");
+				await (gripperZAxisLifted);
+				System.out.println("Gripper lifted");
+				emit jobDone;
+				}
+			}	
+		}
+	}
+	||
+	{//Mode select
+		await(mode);
+		while(true){
+			if((Integer)#mode == 1){
+				emit selectM;
+			}
+			else{
+				emit selectA;
+			}
+			pause;
+		}
+	}
+}

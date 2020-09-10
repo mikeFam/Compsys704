@@ -25,29 +25,29 @@ public class ControllerFiller extends ClockDomain{
   public Signal dosUnitValveExtend = new Signal("dosUnitValveExtend", Signal.OUTPUT);
   private Signal selectM_1;
   private Signal selectA_1;
-  private int S2152 = 1;
-  private int S1243 = 1;
-  private int S971 = 1;
-  private int S979 = 1;
-  private int S973 = 1;
-  private int S987 = 1;
-  private int S995 = 1;
-  private int S1003 = 1;
-  private int S2135 = 1;
-  private int S1245 = 1;
-  private int S1281 = 1;
-  private int S1254 = 1;
-  private int S1262 = 1;
-  private int S1289 = 1;
-  private int S1297 = 1;
-  private int S2150 = 1;
-  private int S2149 = 1;
+  private int S6462 = 1;
+  private int S5553 = 1;
+  private int S5281 = 1;
+  private int S5289 = 1;
+  private int S5283 = 1;
+  private int S5297 = 1;
+  private int S5305 = 1;
+  private int S5313 = 1;
+  private int S6445 = 1;
+  private int S5555 = 1;
+  private int S5591 = 1;
+  private int S5564 = 1;
+  private int S5572 = 1;
+  private int S5599 = 1;
+  private int S5607 = 1;
+  private int S6460 = 1;
+  private int S6459 = 1;
   
   private int[] ends = new int[13];
   private int[] tdone = new int[13];
   
-  public void thread2185(int [] tdone, int [] ends){
-        switch(S2150){
+  public void thread6495(int [] tdone, int [] ends){
+        switch(S6460){
       case 0 : 
         active[12]=0;
         ends[12]=0;
@@ -55,10 +55,10 @@ public class ControllerFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S2149){
+        switch(S6459){
           case 0 : 
             if(mode.getprestatus()){//sysj\controllerFiller.sysj line: 58, column: 9
-              S2149=1;
+              S6459=1;
               if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\controllerFiller.sysj line: 60, column: 7
                 selectM_1.setPresent();//sysj\controllerFiller.sysj line: 61, column: 5
                 currsigs.addElement(selectM_1);
@@ -104,8 +104,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2183(int [] tdone, int [] ends){
-        switch(S1297){
+  public void thread6493(int [] tdone, int [] ends){
+        switch(S5607){
       case 0 : 
         active[11]=0;
         ends[11]=0;
@@ -123,8 +123,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2182(int [] tdone, int [] ends){
-        switch(S1289){
+  public void thread6492(int [] tdone, int [] ends){
+        switch(S5599){
       case 0 : 
         active[10]=0;
         ends[10]=0;
@@ -142,8 +142,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2180(int [] tdone, int [] ends){
-        S1297=1;
+  public void thread6490(int [] tdone, int [] ends){
+        S5607=1;
     System.out.println("InletOn");//sysj\controllerFiller.sysj line: 48, column: 7
     valveInletOnOff.setPresent();//sysj\controllerFiller.sysj line: 49, column: 6
     currsigs.addElement(valveInletOnOff);
@@ -152,8 +152,8 @@ public class ControllerFiller extends ClockDomain{
     tdone[11]=1;
   }
 
-  public void thread2179(int [] tdone, int [] ends){
-        S1289=1;
+  public void thread6489(int [] tdone, int [] ends){
+        S5599=1;
     System.out.println("ValveExtend");//sysj\controllerFiller.sysj line: 44, column: 7
     dosUnitValveExtend.setPresent();//sysj\controllerFiller.sysj line: 45, column: 6
     currsigs.addElement(dosUnitValveExtend);
@@ -162,8 +162,8 @@ public class ControllerFiller extends ClockDomain{
     tdone[10]=1;
   }
 
-  public void thread2177(int [] tdone, int [] ends){
-        switch(S1262){
+  public void thread6487(int [] tdone, int [] ends){
+        switch(S5572){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -181,8 +181,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2176(int [] tdone, int [] ends){
-        switch(S1254){
+  public void thread6486(int [] tdone, int [] ends){
+        switch(S5564){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -200,8 +200,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2174(int [] tdone, int [] ends){
-        S1297=1;
+  public void thread6484(int [] tdone, int [] ends){
+        S5607=1;
     System.out.println("InletOn");//sysj\controllerFiller.sysj line: 48, column: 7
     valveInletOnOff.setPresent();//sysj\controllerFiller.sysj line: 49, column: 6
     currsigs.addElement(valveInletOnOff);
@@ -210,8 +210,8 @@ public class ControllerFiller extends ClockDomain{
     tdone[11]=1;
   }
 
-  public void thread2173(int [] tdone, int [] ends){
-        S1289=1;
+  public void thread6483(int [] tdone, int [] ends){
+        S5599=1;
     System.out.println("ValveExtend");//sysj\controllerFiller.sysj line: 44, column: 7
     dosUnitValveExtend.setPresent();//sysj\controllerFiller.sysj line: 45, column: 6
     currsigs.addElement(dosUnitValveExtend);
@@ -220,8 +220,8 @@ public class ControllerFiller extends ClockDomain{
     tdone[10]=1;
   }
 
-  public void thread2171(int [] tdone, int [] ends){
-        S1262=1;
+  public void thread6481(int [] tdone, int [] ends){
+        S5572=1;
     System.out.println("InjectorOn");//sysj\controllerFiller.sysj line: 38, column: 7
     valveInjectorOnOff.setPresent();//sysj\controllerFiller.sysj line: 39, column: 6
     currsigs.addElement(valveInjectorOnOff);
@@ -230,8 +230,8 @@ public class ControllerFiller extends ClockDomain{
     tdone[9]=1;
   }
 
-  public void thread2170(int [] tdone, int [] ends){
-        S1254=1;
+  public void thread6480(int [] tdone, int [] ends){
+        S5564=1;
     System.out.println("ValveRetract");//sysj\controllerFiller.sysj line: 34, column: 7
     dosUnitValveRetract.setPresent();//sysj\controllerFiller.sysj line: 35, column: 6
     currsigs.addElement(dosUnitValveRetract);
@@ -240,8 +240,8 @@ public class ControllerFiller extends ClockDomain{
     tdone[8]=1;
   }
 
-  public void thread2169(int [] tdone, int [] ends){
-        switch(S2135){
+  public void thread6479(int [] tdone, int [] ends){
+        switch(S6445){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -249,12 +249,12 @@ public class ControllerFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S1245){
+        switch(S5555){
           case 0 : 
             if(selectA_1.getprestatus()){//sysj\controllerFiller.sysj line: 29, column: 9
               System.out.println((mode.getpreval() == null ? null : ((Integer)mode.getpreval())));//sysj\controllerFiller.sysj line: 30, column: 3
-              S1245=1;
-              S1281=0;
+              S5555=1;
+              S5591=0;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
@@ -268,26 +268,26 @@ public class ControllerFiller extends ClockDomain{
           
           case 1 : 
             if(selectM_1.getprestatus()){//sysj\controllerFiller.sysj line: 31, column: 10
-              S1245=0;
+              S5555=0;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              switch(S1281){
+              switch(S5591){
                 case 0 : 
                   if(bottleAtPos2.getprestatus()){//sysj\controllerFiller.sysj line: 32, column: 11
-                    S1281=1;
-                    thread2170(tdone,ends);
-                    thread2171(tdone,ends);
-                    int biggest2172 = 0;
-                    if(ends[8]>=biggest2172){
-                      biggest2172=ends[8];
+                    S5591=1;
+                    thread6480(tdone,ends);
+                    thread6481(tdone,ends);
+                    int biggest6482 = 0;
+                    if(ends[8]>=biggest6482){
+                      biggest6482=ends[8];
                     }
-                    if(ends[9]>=biggest2172){
-                      biggest2172=ends[9];
+                    if(ends[9]>=biggest6482){
+                      biggest6482=ends[9];
                     }
-                    if(biggest2172 == 1){
+                    if(biggest6482 == 1){
                       active[7]=1;
                       ends[7]=1;
                       tdone[7]=1;
@@ -303,51 +303,51 @@ public class ControllerFiller extends ClockDomain{
                 case 1 : 
                   if(dosUnitFilled.getprestatus()){//sysj\controllerFiller.sysj line: 33, column: 11
                     System.out.println("InjectorOff");//sysj\controllerFiller.sysj line: 42, column: 5
-                    S1281=2;
-                    thread2173(tdone,ends);
-                    thread2174(tdone,ends);
-                    int biggest2175 = 0;
-                    if(ends[10]>=biggest2175){
-                      biggest2175=ends[10];
+                    S5591=2;
+                    thread6483(tdone,ends);
+                    thread6484(tdone,ends);
+                    int biggest6485 = 0;
+                    if(ends[10]>=biggest6485){
+                      biggest6485=ends[10];
                     }
-                    if(ends[11]>=biggest2175){
-                      biggest2175=ends[11];
+                    if(ends[11]>=biggest6485){
+                      biggest6485=ends[11];
                     }
-                    if(biggest2175 == 1){
+                    if(biggest6485 == 1){
                       active[7]=1;
                       ends[7]=1;
                       tdone[7]=1;
                     }
                   }
                   else {
-                    thread2176(tdone,ends);
-                    thread2177(tdone,ends);
-                    int biggest2178 = 0;
-                    if(ends[8]>=biggest2178){
-                      biggest2178=ends[8];
+                    thread6486(tdone,ends);
+                    thread6487(tdone,ends);
+                    int biggest6488 = 0;
+                    if(ends[8]>=biggest6488){
+                      biggest6488=ends[8];
                     }
-                    if(ends[9]>=biggest2178){
-                      biggest2178=ends[9];
+                    if(ends[9]>=biggest6488){
+                      biggest6488=ends[9];
                     }
-                    if(biggest2178 == 1){
+                    if(biggest6488 == 1){
                       active[7]=1;
                       ends[7]=1;
                       tdone[7]=1;
                     }
                     //FINXME code
-                    if(biggest2178 == 0){
+                    if(biggest6488 == 0){
                       System.out.println("InjectorOff");//sysj\controllerFiller.sysj line: 42, column: 5
-                      S1281=2;
-                      thread2179(tdone,ends);
-                      thread2180(tdone,ends);
-                      int biggest2181 = 0;
-                      if(ends[10]>=biggest2181){
-                        biggest2181=ends[10];
+                      S5591=2;
+                      thread6489(tdone,ends);
+                      thread6490(tdone,ends);
+                      int biggest6491 = 0;
+                      if(ends[10]>=biggest6491){
+                        biggest6491=ends[10];
                       }
-                      if(ends[11]>=biggest2181){
-                        biggest2181=ends[11];
+                      if(ends[11]>=biggest6491){
+                        biggest6491=ends[11];
                       }
-                      if(biggest2181 == 1){
+                      if(biggest6491 == 1){
                         active[7]=1;
                         ends[7]=1;
                         tdone[7]=1;
@@ -359,30 +359,30 @@ public class ControllerFiller extends ClockDomain{
                 case 2 : 
                   if(dosUnitEvac.getprestatus()){//sysj\controllerFiller.sysj line: 43, column: 11
                     System.out.println("InletOff");//sysj\controllerFiller.sysj line: 52, column: 5
-                    S1245=0;
+                    S5555=0;
                     active[7]=1;
                     ends[7]=1;
                     tdone[7]=1;
                   }
                   else {
-                    thread2182(tdone,ends);
-                    thread2183(tdone,ends);
-                    int biggest2184 = 0;
-                    if(ends[10]>=biggest2184){
-                      biggest2184=ends[10];
+                    thread6492(tdone,ends);
+                    thread6493(tdone,ends);
+                    int biggest6494 = 0;
+                    if(ends[10]>=biggest6494){
+                      biggest6494=ends[10];
                     }
-                    if(ends[11]>=biggest2184){
-                      biggest2184=ends[11];
+                    if(ends[11]>=biggest6494){
+                      biggest6494=ends[11];
                     }
-                    if(biggest2184 == 1){
+                    if(biggest6494 == 1){
                       active[7]=1;
                       ends[7]=1;
                       tdone[7]=1;
                     }
                     //FINXME code
-                    if(biggest2184 == 0){
+                    if(biggest6494 == 0){
                       System.out.println("InletOff");//sysj\controllerFiller.sysj line: 52, column: 5
-                      S1245=0;
+                      S5555=0;
                       active[7]=1;
                       ends[7]=1;
                       tdone[7]=1;
@@ -400,8 +400,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2167(int [] tdone, int [] ends){
-        switch(S1003){
+  public void thread6477(int [] tdone, int [] ends){
+        switch(S5313){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -426,8 +426,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2166(int [] tdone, int [] ends){
-        switch(S995){
+  public void thread6476(int [] tdone, int [] ends){
+        switch(S5305){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -452,8 +452,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2165(int [] tdone, int [] ends){
-        switch(S987){
+  public void thread6475(int [] tdone, int [] ends){
+        switch(S5297){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -478,8 +478,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2164(int [] tdone, int [] ends){
-        switch(S979){
+  public void thread6474(int [] tdone, int [] ends){
+        switch(S5289){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -487,19 +487,19 @@ public class ControllerFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S973){
+        switch(S5283){
           case 0 : 
-            S973=0;
+            S5283=0;
             if(valveInjectorOnOffM.getprestatus()){//sysj\controllerFiller.sysj line: 16, column: 26
               valveInjectorOnOff.setPresent();//sysj\controllerFiller.sysj line: 16, column: 47
               currsigs.addElement(valveInjectorOnOff);
-              S973=1;
+              S5283=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              S973=1;
+              S5283=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -507,18 +507,18 @@ public class ControllerFiller extends ClockDomain{
             break;
           
           case 1 : 
-            S973=1;
-            S973=0;
+            S5283=1;
+            S5283=0;
             if(valveInjectorOnOffM.getprestatus()){//sysj\controllerFiller.sysj line: 16, column: 26
               valveInjectorOnOff.setPresent();//sysj\controllerFiller.sysj line: 16, column: 47
               currsigs.addElement(valveInjectorOnOff);
-              S973=1;
+              S5283=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              S973=1;
+              S5283=1;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -531,8 +531,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2162(int [] tdone, int [] ends){
-        S1003=1;
+  public void thread6472(int [] tdone, int [] ends){
+        S5313=1;
     if(dosUnitValveExtendM.getprestatus()){//sysj\controllerFiller.sysj line: 22, column: 26
       dosUnitValveExtend.setPresent();//sysj\controllerFiller.sysj line: 22, column: 47
       currsigs.addElement(dosUnitValveExtend);
@@ -547,8 +547,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2161(int [] tdone, int [] ends){
-        S995=1;
+  public void thread6471(int [] tdone, int [] ends){
+        S5305=1;
     if(dosUnitValveRetractM.getprestatus()){//sysj\controllerFiller.sysj line: 20, column: 26
       dosUnitValveRetract.setPresent();//sysj\controllerFiller.sysj line: 20, column: 48
       currsigs.addElement(dosUnitValveRetract);
@@ -563,8 +563,8 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2160(int [] tdone, int [] ends){
-        S987=1;
+  public void thread6470(int [] tdone, int [] ends){
+        S5297=1;
     if(valveInletOnOffM.getprestatus()){//sysj\controllerFiller.sysj line: 18, column: 26
       valveInletOnOff.setPresent();//sysj\controllerFiller.sysj line: 18, column: 44
       currsigs.addElement(valveInletOnOff);
@@ -579,27 +579,27 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2159(int [] tdone, int [] ends){
-        S979=1;
-    S973=0;
+  public void thread6469(int [] tdone, int [] ends){
+        S5289=1;
+    S5283=0;
     if(valveInjectorOnOffM.getprestatus()){//sysj\controllerFiller.sysj line: 16, column: 26
       valveInjectorOnOff.setPresent();//sysj\controllerFiller.sysj line: 16, column: 47
       currsigs.addElement(valveInjectorOnOff);
-      S973=1;
+      S5283=1;
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
     else {
-      S973=1;
+      S5283=1;
       active[3]=1;
       ends[3]=1;
       tdone[3]=1;
     }
   }
 
-  public void thread2158(int [] tdone, int [] ends){
-        switch(S1243){
+  public void thread6468(int [] tdone, int [] ends){
+        switch(S5553){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -607,29 +607,29 @@ public class ControllerFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S971){
+        switch(S5281){
           case 0 : 
             if(selectM_1.getprestatus()){//sysj\controllerFiller.sysj line: 13, column: 10
               System.out.println((mode.getpreval() == null ? null : ((Integer)mode.getpreval())));//sysj\controllerFiller.sysj line: 14, column: 4
-              S971=1;
-              thread2159(tdone,ends);
-              thread2160(tdone,ends);
-              thread2161(tdone,ends);
-              thread2162(tdone,ends);
-              int biggest2163 = 0;
-              if(ends[3]>=biggest2163){
-                biggest2163=ends[3];
+              S5281=1;
+              thread6469(tdone,ends);
+              thread6470(tdone,ends);
+              thread6471(tdone,ends);
+              thread6472(tdone,ends);
+              int biggest6473 = 0;
+              if(ends[3]>=biggest6473){
+                biggest6473=ends[3];
               }
-              if(ends[4]>=biggest2163){
-                biggest2163=ends[4];
+              if(ends[4]>=biggest6473){
+                biggest6473=ends[4];
               }
-              if(ends[5]>=biggest2163){
-                biggest2163=ends[5];
+              if(ends[5]>=biggest6473){
+                biggest6473=ends[5];
               }
-              if(ends[6]>=biggest2163){
-                biggest2163=ends[6];
+              if(ends[6]>=biggest6473){
+                biggest6473=ends[6];
               }
-              if(biggest2163 == 1){
+              if(biggest6473 == 1){
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -644,37 +644,37 @@ public class ControllerFiller extends ClockDomain{
           
           case 1 : 
             if(selectA_1.getprestatus()){//sysj\controllerFiller.sysj line: 15, column: 10
-              S971=0;
+              S5281=0;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              thread2164(tdone,ends);
-              thread2165(tdone,ends);
-              thread2166(tdone,ends);
-              thread2167(tdone,ends);
-              int biggest2168 = 0;
-              if(ends[3]>=biggest2168){
-                biggest2168=ends[3];
+              thread6474(tdone,ends);
+              thread6475(tdone,ends);
+              thread6476(tdone,ends);
+              thread6477(tdone,ends);
+              int biggest6478 = 0;
+              if(ends[3]>=biggest6478){
+                biggest6478=ends[3];
               }
-              if(ends[4]>=biggest2168){
-                biggest2168=ends[4];
+              if(ends[4]>=biggest6478){
+                biggest6478=ends[4];
               }
-              if(ends[5]>=biggest2168){
-                biggest2168=ends[5];
+              if(ends[5]>=biggest6478){
+                biggest6478=ends[5];
               }
-              if(ends[6]>=biggest2168){
-                biggest2168=ends[6];
+              if(ends[6]>=biggest6478){
+                biggest6478=ends[6];
               }
-              if(biggest2168 == 1){
+              if(biggest6478 == 1){
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               //FINXME code
-              if(biggest2168 == 0){
-                S971=0;
+              if(biggest6478 == 0){
+                S5281=0;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -688,25 +688,25 @@ public class ControllerFiller extends ClockDomain{
     }
   }
 
-  public void thread2156(int [] tdone, int [] ends){
-        S2150=1;
-    S2149=0;
+  public void thread6466(int [] tdone, int [] ends){
+        S6460=1;
+    S6459=0;
     active[12]=1;
     ends[12]=1;
     tdone[12]=1;
   }
 
-  public void thread2155(int [] tdone, int [] ends){
-        S2135=1;
-    S1245=0;
+  public void thread6465(int [] tdone, int [] ends){
+        S6445=1;
+    S5555=0;
     active[7]=1;
     ends[7]=1;
     tdone[7]=1;
   }
 
-  public void thread2154(int [] tdone, int [] ends){
-        S1243=1;
-    S971=0;
+  public void thread6464(int [] tdone, int [] ends){
+        S5553=1;
+    S5281=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;
@@ -719,30 +719,30 @@ public class ControllerFiller extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S2152){
+      switch(S6462){
         case 0 : 
-          S2152=0;
+          S6462=0;
           break RUN;
         
         case 1 : 
-          S2152=2;
-          S2152=2;
+          S6462=2;
+          S6462=2;
           selectM_1.setClear();//sysj\controllerFiller.sysj line: 9, column: 2
           selectA_1.setClear();//sysj\controllerFiller.sysj line: 9, column: 2
-          thread2154(tdone,ends);
-          thread2155(tdone,ends);
-          thread2156(tdone,ends);
-          int biggest2157 = 0;
-          if(ends[2]>=biggest2157){
-            biggest2157=ends[2];
+          thread6464(tdone,ends);
+          thread6465(tdone,ends);
+          thread6466(tdone,ends);
+          int biggest6467 = 0;
+          if(ends[2]>=biggest6467){
+            biggest6467=ends[2];
           }
-          if(ends[7]>=biggest2157){
-            biggest2157=ends[7];
+          if(ends[7]>=biggest6467){
+            biggest6467=ends[7];
           }
-          if(ends[12]>=biggest2157){
-            biggest2157=ends[12];
+          if(ends[12]>=biggest6467){
+            biggest6467=ends[12];
           }
-          if(biggest2157 == 1){
+          if(biggest6467 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
@@ -751,30 +751,30 @@ public class ControllerFiller extends ClockDomain{
         case 2 : 
           selectM_1.setClear();//sysj\controllerFiller.sysj line: 9, column: 2
           selectA_1.setClear();//sysj\controllerFiller.sysj line: 9, column: 2
-          thread2158(tdone,ends);
-          thread2169(tdone,ends);
-          thread2185(tdone,ends);
-          int biggest2186 = 0;
-          if(ends[2]>=biggest2186){
-            biggest2186=ends[2];
+          thread6468(tdone,ends);
+          thread6479(tdone,ends);
+          thread6495(tdone,ends);
+          int biggest6496 = 0;
+          if(ends[2]>=biggest6496){
+            biggest6496=ends[2];
           }
-          if(ends[7]>=biggest2186){
-            biggest2186=ends[7];
+          if(ends[7]>=biggest6496){
+            biggest6496=ends[7];
           }
-          if(ends[12]>=biggest2186){
-            biggest2186=ends[12];
+          if(ends[12]>=biggest6496){
+            biggest6496=ends[12];
           }
-          if(biggest2186 == 1){
+          if(biggest6496 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest2186 == 0){
-            S2152=0;
+          if(biggest6496 == 0){
+            S6462=0;
             active[1]=0;
             ends[1]=0;
-            S2152=0;
+            S6462=0;
             break RUN;
           }
         
