@@ -1,9 +1,66 @@
 PlantFiller(
-		input signal motConveyorOnOff;
-		input signal enable, refill;
-		output signal bottleAtPos1,bottleLeftPos5;
-		output signal bottleAtPos1E, bottleLeftPos5E;
+		input signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend;
+		input signal enable;
+		output signal bottleAtPos2, dosUnitEvac, dosUnitFilled;
+		output signal bottleAtPos2E, dosUnitEvacE, dosUnitFilledE;
 		)
 ->
 {
+	signal injectorOn, injectorOff, inletOn, inletOff;
+	{//Injector
+		while(true){
+			abort (immediate (valveInjectorOnOff && enable)){
+				System.out.println("injectorOff");
+				sustain injectorOff;
+			}
+			await(!enable);
+			abort(immediate (!valveInjectorOnOff && enable)){
+				System.out.println("injectorOn");
+				sustain injectorOn;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{//Bottle
+		while(true){
+			sustain bottleAtPos2;
+		}
+	}
+	||
+	{//Inlet
+		while(true){
+			abort (immediate (valveInletOnOff && enable)){
+				System.out.println("inletOff");
+				sustain inletOff;
+			}
+			await(!enable);
+			abort(immediate (!valveInletOnOff && enable)){
+				System.out.println("inletOn");
+				sustain inletOn;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{//Pressure Canister
+		while(true){
+			abort(immediate (dosUnitValveExtend && enable)){
+				sustain dosUnitFilled;
+			}
+			await(!enable);
+			abort(immediate (dosUnitValveRetract && enable)){
+				sustain dosUnitEvac;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(bottleAtPos2){emit bottleAtPos2E;} pause;}}
+		||
+		{while(true){present(dosUnitEvac){emit dosUnitEvacE;} pause;}}
+		||
+		{while(true){present(dosUnitFilled){emit dosUnitFilledE;} pause;}}
+	}
 }

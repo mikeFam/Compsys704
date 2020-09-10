@@ -90,10 +90,6 @@ PlantConveyor(
 	}
 	||
 	{// To viz
-//		{while(true){present(motorOn){emit motorOnE;} pause;}}
-//		||
-//		{while(true){present(motorOff){emit motorOffE;} pause;}}
-//		||
 		{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
 		||
 		{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}

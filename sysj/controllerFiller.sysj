@@ -1,8 +1,8 @@
 ControllerFiller(
-		input signal bottleAtPos1, bottleLeftPos5;
-		output signal motConveyorOnOff;
+		input signal bottleAtPos2, dosUnitEvac, dosUnitFilled;
+		output signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend;
 		input Integer signal mode;
-		input signal motConveyorOnOffM;
+		input signal valveInjectorOnOffM, valveInletOnOffM, dosUnitValveRetractM, dosUnitValveExtendM;
 		)
 ->
 {	
@@ -11,8 +11,15 @@ ControllerFiller(
 	{//Manual
 		while(true){
 			await(selectM);
+			System.out.println(#mode);
 			abort(selectA){
-				{while(true){present(motConveyorOnOffM){emit motConveyorOnOff;} pause;}}
+				{while(true){present(valveInjectorOnOffM){emit valveInjectorOnOff;} pause;}}
+				||
+				{while(true){present(valveInletOnOffM){emit valveInletOnOff;} pause;}}
+				||
+				{while(true){present(dosUnitValveRetractM){emit dosUnitValveRetract;} pause;}}
+				||
+				{while(true){present(dosUnitValveExtendM){emit dosUnitValveExtend;} pause;}}
 			}
 		}
 	}	
@@ -20,10 +27,29 @@ ControllerFiller(
 	{//Auto
 		while (true){
 		await(selectA);
+		System.out.println(#mode);
 			abort(selectM){
-				abort(!bottleLeftPos5 && !bottleAtPos1){
-					sustain motConveyorOnOff;
+				await(bottleAtPos2);
+				abort(dosUnitFilled){
+					{System.out.println("ValveRetract");
+					sustain dosUnitValveRetract;
+					}
+					||
+					{System.out.println("InjectorOn");
+					sustain valveInjectorOnOff;
+					}
 				}
+				System.out.println("InjectorOff");
+				abort(dosUnitEvac){
+					{System.out.println("ValveExtend");
+					sustain dosUnitValveExtend;
+					}
+					|| 
+					{System.out.println("InletOn");
+					sustain valveInletOnOff;	
+					}
+				}
+				System.out.println("InletOff");
 			}	
 		}
 	}
@@ -41,3 +67,5 @@ ControllerFiller(
 		}
 	}
 }
+
+
