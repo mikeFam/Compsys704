@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 ControllerCapper(
 		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
 		output signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
@@ -78,19 +77,3 @@ ControllerCapper(
 		}
 	}
 }
-=======
-ControllerCapLoader(
-		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
-		output signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
-		input Integer signal mode;
-		)
-->
-{
-
-
-
-
-
-	
-{
->>>>>>> cc5cb389511926da6b29712bab8fcfd2c16e2c2c
