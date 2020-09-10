@@ -1,0 +1,15 @@
+<System xmlns="http://systemjtechnology.com">
+	<SubSystem Name="SS10" Local="true">
+		<ClockDomain Name="PlantRotaryTableCD" Class="PlantRotaryTable">
+		
+			
+			<oSignal Name="tableAlignedWithSensor" 	To="ControllerRotaryTableCD.tableAlignedWithSensor" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="bottleAtPos5"  			To="ControllerRotaryTableCD.bottleAtPos5"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="capOnBottleAtPos1"  		To="ControllerRotaryTableCD.capOnBottleAtPos1"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+		
+			<oSignal Name="tableAlignedWithSensorE" To="UI.tableAlignedWithSensorE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="bottleAtPos5E" 			To="UI.bottleAtPos5E" 									Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="capOnBottleAtPos1E" 		To="UI.capOnBottleAtPos1E" 								Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />				
+		</ClockDomain>
+	</SubSystem>
+</System>

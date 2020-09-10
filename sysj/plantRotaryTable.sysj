@@ -1,0 +1,71 @@
+PlantRotaryTable(
+		input signal rotaryTableTrigger;
+		input signal enable, alignedSensor, capAtPos1, bottlePos5;
+		output signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
+		output signal tableAlignedWithSensorE, bottleAtPos5E, capOnBottleAtPos1E;
+		)
+->
+{
+	signal rotaryOn, rotaryOff;
+	{//RotaryTable
+		while(true){
+			abort (immediate (rotaryTableTrigger && enable)){
+				System.out.println("rotaryOff");
+				sustain rotaryOff;
+			}
+			await(!enable);
+			abort(immediate (!rotaryTableTrigger && enable)){
+				System.out.println("rotaryOn");
+				sustain rotaryOn;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{//AlignedSensor
+		while(true){
+			await(rotaryTableTrigger);
+			await(alignedSensor);
+			await(enable);
+			abort (!alignedSensor && !enable){
+				System.out.println("tableAlignedWithSensor");
+				sustain tableAlignedWithSensor;
+			}
+			System.out.println("Not-tableAlignedWithSensor");
+		}
+	}
+	||
+	{//capAtPos1
+		while(true){
+			await(rotaryTableTrigger);
+			await(capAtPos1);
+			await(enable);
+			abort (!capAtPos1 && !enable){
+				System.out.println("capOnBottleAtPos1");
+				sustain capOnBottleAtPos1;
+			}
+			System.out.println("Not-capOnBottleAtPos1");
+		}
+	}
+	||
+	{//Bottle
+		while(true){
+			await(rotaryTableTrigger);
+			await(bottlePos5);
+			await(enable);
+			abort (!bottlePos5 && !enable){
+				System.out.println("bottleAtPos5");
+				sustain bottleAtPos5;
+			}
+			System.out.println("Not-bottleAtPos5");
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(tableAlignedWithSensor){emit tableAlignedWithSensorE;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
+		||
+		{while(true){present(capOnBottleAtPos1){emit capOnBottleAtPos1E;} pause;}}
+	}
+}

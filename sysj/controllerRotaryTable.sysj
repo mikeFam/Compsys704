@@ -1,0 +1,67 @@
+ControllerRotaryTable(
+		input signal tableAlignedWithSensor, bottleAtPos5, capOnBottleAtPos1;
+		output signal rotaryTableTrigger;
+		input Integer signal mode;
+		input signal rotaryTableTriggerM;
+		)
+->
+{	
+	signal selectM, selectA, startTimer, stopTimer;
+
+	{//Manual
+		while(true){
+			await(selectM);
+			System.out.println(#mode);
+			abort(selectA){
+				{while(true){present(rotaryTableTriggerM){emit rotaryTableTrigger;} pause;}}
+			}
+		}
+	}	
+	||
+	{//Auto
+		while (true){
+		await(selectA);
+		System.out.println(#mode);
+			abort(selectM){
+				abort(capOnBottleAtPos1){
+					await(tableAlignedWithSensor);
+					System.out.println("tableAlignedWithSensor");
+					{emit startTimer;
+					pause;}
+					||
+					{abort(immediate (stopTimer && tableAlignedWithSensor)){
+						System.out.println("rotaryTableTrigger");
+						sustain rotaryTableTrigger;
+					}}
+				System.out.println("capOnBottleAtPos1");
+				}
+			}	
+		}
+	}
+	||
+	{//Timer
+		while(true){
+			await(startTimer);
+			System.out.println("startTimer");
+			waitl(0.5 s);
+			emit stopTimer; 
+			System.out.println("stopTimer");
+			pause;
+		}
+	}
+	||
+	{//Mode select
+		await(mode);
+		while(true){
+			if((Integer)#mode == 1){
+				emit selectM;
+			}
+			else{
+				emit selectA;
+			}
+			pause;
+		}
+	}
+}
+
+
