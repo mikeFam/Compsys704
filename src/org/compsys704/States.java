@@ -15,6 +15,6 @@ public class States {
 	
 	public static volatile boolean BOTTLE_AT_POS_1 = false;
 	public static volatile boolean BOTTLE_AT_POS_5 = false;
-	public static volatile boolean BOTTLE_AT_LOADER = false;
+	public static volatile boolean BOTTLE_AT_LOADER = true;
 
 }

@@ -36,16 +36,19 @@ PlantConveyor(
 		int data = #bottlePos;
 			if((Integer)#bottlePos == 0){
 				abort(bottleAt1){
+					System.out.println("bottleAtLoad");
 					sustain bottleAtLoad;
 				}
 			}
 			else if((Integer)#bottlePos == 1){
 				abort(bottleAt5){
+					System.out.println("bottleAtPos1");
 					sustain bottleAtPos1;
 				}
 			}
 			else if((Integer)#bottlePos == 2){
 				abort(bottleAtL){
+					System.out.println("bottleLeftPos5");
 					sustain bottleLeftPos5;
 				}
 			}
@@ -64,7 +67,7 @@ PlantConveyor(
 			// At Load
 			abort(empty){
 				while(true){
-					System.out.println("Load");
+					emit bottlePos(0);
 					emit bottleAtL;
 					await(motorOn);
 					// At pos 1
@@ -74,7 +77,6 @@ PlantConveyor(
 					emit bottlePos(2);
 					emit bottleAt5;
 					await (!enable);
-					System.out.println("At Pos 2");
 					emit bottleDec;
 				}
 			}

@@ -10,7 +10,7 @@
 			
 			<oSignal Name="bottleAtPos1E" 		To="UI.bottleAtPos1E" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
 			<oSignal Name="bottleLeftPos5E" 	To="UI.bottleLeftPos5E" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="bottleAtLoadE" 		To="UI.bottleAtLoadE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
+			<oSignal Name="bottleAtLoadE" 		To="UI.bottleAtLoadE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
 		</ClockDomain>
 	</SubSystem>
 </System>

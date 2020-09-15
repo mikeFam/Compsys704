@@ -9,19 +9,15 @@ public class ConveyorVizWorker extends Worker{
 	public void setSignal(boolean status) {
 //		System.out.println(signame+"  "+status);
 		switch(signame){
+		case "bottleAtLoadE":
+			States.BOTTLE_AT_LOADER = status;
+			break;	
 		case "bottleAtPos1E":
 			States.BOTTLE_AT_POS_1 = status;
-			System.out.println("Pos 1 = " + States.BOTTLE_AT_POS_1);
 			break;
 		case "bottleLeftPos5E":
 			States.BOTTLE_AT_POS_5 = status;
-			System.out.println("Pos 5 = " +States.BOTTLE_AT_POS_5);
 			break;
-		case "bottleAtLoadE":
-			System.out.println("Pos Load = " + States.BOTTLE_AT_LOADER);
-			States.BOTTLE_AT_LOADER = status;
-			System.out.println("Pos Load = " + States.BOTTLE_AT_LOADER);
-			break;	
 		default: 
 			System.err.println("Wrong sig name : "+signame);
 			System.exit(1);
