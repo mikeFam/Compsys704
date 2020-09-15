@@ -11,6 +11,7 @@ public class ControllerConveyor extends ClockDomain{
   private char [] active;
   private char [] paused;
   private char [] suspended;
+  public Signal bottleAtLoad = new Signal("bottleAtLoad", Signal.INPUT);
   public Signal bottleAtPos1 = new Signal("bottleAtPos1", Signal.INPUT);
   public Signal bottleLeftPos5 = new Signal("bottleLeftPos5", Signal.INPUT);
   public Signal mode = new Signal("mode", Signal.INPUT);
@@ -354,6 +355,7 @@ public class ControllerConveyor extends ClockDomain{
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         if(!df){
+          bottleAtLoad.gethook();
           bottleAtPos1.gethook();
           bottleLeftPos5.gethook();
           mode.gethook();
@@ -362,6 +364,7 @@ public class ControllerConveyor extends ClockDomain{
         }
         runClockDomain();
       }
+      bottleAtLoad.setpreclear();
       bottleAtPos1.setpreclear();
       bottleLeftPos5.setpreclear();
       mode.setpreclear();
@@ -375,6 +378,9 @@ public class ControllerConveyor extends ClockDomain{
         ((Signal)currsigs.elementAt(qw)).setpreval(((Signal)currsigs.elementAt(qw)).getValue());
       }
       currsigs.removeAllElements();
+      dummyint = bottleAtLoad.getStatus() ? bottleAtLoad.setprepresent() : bottleAtLoad.setpreclear();
+      bottleAtLoad.setpreval(bottleAtLoad.getValue());
+      bottleAtLoad.setClear();
       dummyint = bottleAtPos1.getStatus() ? bottleAtPos1.setprepresent() : bottleAtPos1.setpreclear();
       bottleAtPos1.setpreval(bottleAtPos1.getValue());
       bottleAtPos1.setClear();
@@ -393,6 +399,7 @@ public class ControllerConveyor extends ClockDomain{
       selectA_1.setClear();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
+        bottleAtLoad.gethook();
         bottleAtPos1.gethook();
         bottleLeftPos5.gethook();
         mode.gethook();
