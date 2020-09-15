@@ -10,4 +10,11 @@ public class States {
 	public static volatile boolean MAG_EMPTY = false;
 	
 	public static volatile boolean CAP_READY = false;
+	
+	//states for conveyor
+	
+	public static volatile boolean BOTTLE_AT_POS_1 = false;
+	public static volatile boolean BOTTLE_AT_POS_5 = false;
+	public static volatile boolean BOTTLE_AT_LOADER = false;
+
 }
