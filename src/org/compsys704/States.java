@@ -28,10 +28,10 @@ public class States {
 	public static volatile boolean BOTTLE_AT_CAPPER = true;
 	public static volatile boolean CLAMP_EXTEND = false;
 	public static volatile boolean CLAMP_RETRACT = !CLAMP_EXTEND;
-	public static volatile boolean GRIPPER_EXTENDED = true;
+	public static volatile boolean GRIPPER_EXTENDED = false;
 	public static volatile boolean GRIPPER_RETRACTED = !GRIPPER_EXTENDED;
-	public static volatile boolean GRIPPER_GRIPPED = true;
+	public static volatile boolean GRIPPER_GRIPPED = false;
 	public static volatile boolean GRIPPER_UNGRIPPED = !GRIPPER_GRIPPED;
-	public static volatile boolean GRIPPER_AT_DEST = true;
+	public static volatile boolean GRIPPER_AT_DEST = false;
 	public static volatile boolean GRIPPER_AT_SOURCE = !GRIPPER_AT_DEST;
 }

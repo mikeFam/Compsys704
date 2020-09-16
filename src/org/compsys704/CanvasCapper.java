@@ -39,23 +39,23 @@ public class CanvasCapper extends JPanel {
 		g.drawImage(bottleCap, 0, 0, null);
 	
 		if(States.CLAMP_RETRACT) {
-			g.drawImage(clamp1, 50, 30, null);
+			g.drawImage(clamp1, 0, 0, null);
 		} else {
-			g.drawImage(clamp2, 50, 30, null);
+			g.drawImage(clamp2, 0, 0, null);
 		}
 		
 		if(States.GRIPPER_RETRACTED) {
-			g.drawImage(gripper1, 50, 0, null);
+			g.drawImage(gripper1, 0, 0, null);
 		} else {
 			if (States.GRIPPER_GRIPPED) {
 				if (States.GRIPPER_AT_DEST) {
-					g.drawImage(gripper4, 50, 0, null);
+					g.drawImage(gripper4, 0, 0, null);
 				} else {
-					g.drawImage(gripper3, 50, 0, null);
+					g.drawImage(gripper3, 0, 0, null);
 				}
 			}
 			else {
-				g.drawImage(gripper2, 50, 0, null);
+				g.drawImage(gripper2, 0, 0, null);
 			}
 		}
 	}
