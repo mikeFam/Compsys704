@@ -2,12 +2,12 @@ package org.compsys704;
 
 import java.util.Arrays;
 import java.util.List;
+import org.omg.PortableServer.POAManagerPackage.State;
 
 public class CapperVizWorker extends Worker{
-
+	
 	@Override
 	public void setSignal(boolean status) {
-//		System.out.println(signame+"  "+status);
 		switch(signame){
 		case "gripperZAxisLiftedE":
 			States.GRIPPER_RETRACTED = status;
@@ -27,6 +27,12 @@ public class CapperVizWorker extends Worker{
 		case "gripperTurnHomePosE":
 			States.GRIPPER_AT_SOURCE = status;
 			break;
+		case "capGripE":
+			States.GRIPPER_GRIPPED = status;
+			break;
+		case "capNotGripE":
+			States.GRIPPER_UNGRIPPED = status;
+			break;
 		default: 
 			System.err.println("Wrong sig name : "+signame);
 			System.exit(1);
@@ -34,7 +40,7 @@ public class CapperVizWorker extends Worker{
 	}
 	
 	
-	static final List<String> signames = Arrays.asList("bottleAtPos4E", "gripperZAxisLoweredE", "gripperZAxisLiftedE", "gripperTurnHomePosE", "gripperTurnFinalPosE", "clampRetractedE", "clampExtendedE");
+	static final List<String> signames = Arrays.asList("bottleAtPos4E", "gripperZAxisLoweredE", "gripperZAxisLiftedE", "gripperTurnHomePosE", "gripperTurnFinalPosE", "clampRetractedE", "clampExtendedE","capGripE","capNotGripE");
 	
 	@Override
 	public boolean hasSignal(String sn) {

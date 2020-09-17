@@ -4,18 +4,20 @@
 			<iSignal Name="bottleAtPos2" 												  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="dosUnitEvac"  	 											  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="dosUnitFilled"  	 											  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="injectorOff"  	 											  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
+			<iSignal Name="inletOff"  	 											  	  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			
 			<oSignal Name="valveInjectorOnOff" 	To="PlantFillerCD.valveInjectorOnOff" 	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="valveInletOnOff" 	To="PlantFillerCD.valveInletOnOff" 	  	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="dosUnitValveRetract" To="PlantFillerCD.dosUnitValveRetract" 	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="dosUnitValveExtend" 	To="PlantFillerCD.dosUnitValveExtend" 	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="jobDone" 			To="PlantFillerCD.jobDone" 	  			  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 		
 			<iSignal Name="mode"  	 			 										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="valveInjectorOnOffM"  										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="valveInletOnOffM"  	 										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="dosUnitValveRetractM" 										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-			<iSignal Name="dosUnitValveExtendM"  										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
-		
+			<iSignal Name="dosUnitValveExtendM"  										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />	
 		</ClockDomain>
 	</SubSystem>
 </System>

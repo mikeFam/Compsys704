@@ -15,36 +15,179 @@ public class PlantFiller extends ClockDomain{
   public Signal valveInletOnOff = new Signal("valveInletOnOff", Signal.INPUT);
   public Signal dosUnitValveRetract = new Signal("dosUnitValveRetract", Signal.INPUT);
   public Signal dosUnitValveExtend = new Signal("dosUnitValveExtend", Signal.INPUT);
+  public Signal jobDone = new Signal("jobDone", Signal.INPUT);
   public Signal enable = new Signal("enable", Signal.INPUT);
   public Signal bottleAtPos2 = new Signal("bottleAtPos2", Signal.OUTPUT);
   public Signal dosUnitEvac = new Signal("dosUnitEvac", Signal.OUTPUT);
   public Signal dosUnitFilled = new Signal("dosUnitFilled", Signal.OUTPUT);
+  public Signal injectorOn = new Signal("injectorOn", Signal.OUTPUT);
+  public Signal injectorOff = new Signal("injectorOff", Signal.OUTPUT);
+  public Signal inletOn = new Signal("inletOn", Signal.OUTPUT);
+  public Signal inletOff = new Signal("inletOff", Signal.OUTPUT);
+  public Signal jobDoneN = new Signal("jobDoneN", Signal.OUTPUT);
   public Signal bottleAtPos2E = new Signal("bottleAtPos2E", Signal.OUTPUT);
   public Signal dosUnitEvacE = new Signal("dosUnitEvacE", Signal.OUTPUT);
   public Signal dosUnitFilledE = new Signal("dosUnitFilledE", Signal.OUTPUT);
-  private Signal injectorOn_1;
-  private Signal injectorOff_1;
-  private Signal inletOn_1;
-  private Signal inletOff_1;
-  private int S13510 = 1;
-  private int S13320 = 1;
-  private int S13237 = 1;
-  private int S13328 = 1;
-  private int S13423 = 1;
-  private int S13340 = 1;
-  private int S13482 = 1;
-  private int S13431 = 1;
-  private int S13508 = 1;
-  private int S13490 = 1;
-  private int S13484 = 1;
-  private int S13498 = 1;
-  private int S13506 = 1;
+  public Signal injectorOnE = new Signal("injectorOnE", Signal.OUTPUT);
+  public Signal injectorOffE = new Signal("injectorOffE", Signal.OUTPUT);
+  public Signal inletOnE = new Signal("inletOnE", Signal.OUTPUT);
+  public Signal inletOffE = new Signal("inletOffE", Signal.OUTPUT);
+  public Signal jobDoneE = new Signal("jobDoneE", Signal.OUTPUT);
+  private int S15536 = 1;
+  private int S14990 = 1;
+  private int S14939 = 1;
+  private int S15049 = 1;
+  private int S14998 = 1;
+  private int S15108 = 1;
+  private int S15057 = 1;
+  private int S15167 = 1;
+  private int S15116 = 1;
+  private int S15233 = 1;
+  private int S15175 = 1;
+  private int S15169 = 1;
+  private int S15183 = 1;
+  private int S15191 = 1;
+  private int S15199 = 1;
+  private int S15207 = 1;
+  private int S15215 = 1;
+  private int S15223 = 1;
+  private int S15231 = 1;
   
-  private int[] ends = new int[10];
-  private int[] tdone = new int[10];
+  private int[] ends = new int[15];
+  private int[] tdone = new int[15];
   
-  public void thread13529(int [] tdone, int [] ends){
-        switch(S13506){
+  public void thread15565(int [] tdone, int [] ends){
+        switch(S15231){
+      case 0 : 
+        active[14]=0;
+        ends[14]=0;
+        tdone[14]=1;
+        break;
+      
+      case 1 : 
+        if(jobDoneN.getprestatus()){//sysj\plantFiller.sysj line: 83, column: 24
+          jobDoneE.setPresent();//sysj\plantFiller.sysj line: 83, column: 34
+          currsigs.addElement(jobDoneE);
+          active[14]=1;
+          ends[14]=1;
+          tdone[14]=1;
+        }
+        else {
+          active[14]=1;
+          ends[14]=1;
+          tdone[14]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread15564(int [] tdone, int [] ends){
+        switch(S15223){
+      case 0 : 
+        active[13]=0;
+        ends[13]=0;
+        tdone[13]=1;
+        break;
+      
+      case 1 : 
+        if(inletOff.getprestatus()){//sysj\plantFiller.sysj line: 81, column: 24
+          inletOffE.setPresent();//sysj\plantFiller.sysj line: 81, column: 34
+          currsigs.addElement(inletOffE);
+          active[13]=1;
+          ends[13]=1;
+          tdone[13]=1;
+        }
+        else {
+          active[13]=1;
+          ends[13]=1;
+          tdone[13]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread15563(int [] tdone, int [] ends){
+        switch(S15215){
+      case 0 : 
+        active[12]=0;
+        ends[12]=0;
+        tdone[12]=1;
+        break;
+      
+      case 1 : 
+        if(inletOn.getprestatus()){//sysj\plantFiller.sysj line: 79, column: 24
+          inletOnE.setPresent();//sysj\plantFiller.sysj line: 79, column: 33
+          currsigs.addElement(inletOnE);
+          active[12]=1;
+          ends[12]=1;
+          tdone[12]=1;
+        }
+        else {
+          active[12]=1;
+          ends[12]=1;
+          tdone[12]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread15562(int [] tdone, int [] ends){
+        switch(S15207){
+      case 0 : 
+        active[11]=0;
+        ends[11]=0;
+        tdone[11]=1;
+        break;
+      
+      case 1 : 
+        if(injectorOff.getprestatus()){//sysj\plantFiller.sysj line: 77, column: 24
+          injectorOffE.setPresent();//sysj\plantFiller.sysj line: 77, column: 37
+          currsigs.addElement(injectorOffE);
+          active[11]=1;
+          ends[11]=1;
+          tdone[11]=1;
+        }
+        else {
+          active[11]=1;
+          ends[11]=1;
+          tdone[11]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread15561(int [] tdone, int [] ends){
+        switch(S15199){
+      case 0 : 
+        active[10]=0;
+        ends[10]=0;
+        tdone[10]=1;
+        break;
+      
+      case 1 : 
+        if(injectorOn.getprestatus()){//sysj\plantFiller.sysj line: 75, column: 24
+          injectorOnE.setPresent();//sysj\plantFiller.sysj line: 75, column: 36
+          currsigs.addElement(injectorOnE);
+          active[10]=1;
+          ends[10]=1;
+          tdone[10]=1;
+        }
+        else {
+          active[10]=1;
+          ends[10]=1;
+          tdone[10]=1;
+        }
+        break;
+      
+    }
+  }
+
+  public void thread15560(int [] tdone, int [] ends){
+        switch(S15191){
       case 0 : 
         active[9]=0;
         ends[9]=0;
@@ -52,8 +195,8 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        if(dosUnitFilled.getprestatus()){//sysj\plantFiller.sysj line: 64, column: 24
-          dosUnitFilledE.setPresent();//sysj\plantFiller.sysj line: 64, column: 39
+        if(dosUnitFilled.getprestatus()){//sysj\plantFiller.sysj line: 73, column: 24
+          dosUnitFilledE.setPresent();//sysj\plantFiller.sysj line: 73, column: 39
           currsigs.addElement(dosUnitFilledE);
           active[9]=1;
           ends[9]=1;
@@ -69,8 +212,8 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13528(int [] tdone, int [] ends){
-        switch(S13498){
+  public void thread15559(int [] tdone, int [] ends){
+        switch(S15183){
       case 0 : 
         active[8]=0;
         ends[8]=0;
@@ -78,8 +221,8 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        if(dosUnitEvac.getprestatus()){//sysj\plantFiller.sysj line: 62, column: 24
-          dosUnitEvacE.setPresent();//sysj\plantFiller.sysj line: 62, column: 37
+        if(dosUnitEvac.getprestatus()){//sysj\plantFiller.sysj line: 71, column: 24
+          dosUnitEvacE.setPresent();//sysj\plantFiller.sysj line: 71, column: 37
           currsigs.addElement(dosUnitEvacE);
           active[8]=1;
           ends[8]=1;
@@ -95,8 +238,8 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13527(int [] tdone, int [] ends){
-        switch(S13490){
+  public void thread15558(int [] tdone, int [] ends){
+        switch(S15175){
       case 0 : 
         active[7]=0;
         ends[7]=0;
@@ -104,19 +247,19 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S13484){
+        switch(S15169){
           case 0 : 
-            S13484=0;
-            if(bottleAtPos2.getprestatus()){//sysj\plantFiller.sysj line: 60, column: 24
-              bottleAtPos2E.setPresent();//sysj\plantFiller.sysj line: 60, column: 38
+            S15169=0;
+            if(bottleAtPos2.getprestatus()){//sysj\plantFiller.sysj line: 69, column: 24
+              bottleAtPos2E.setPresent();//sysj\plantFiller.sysj line: 69, column: 38
               currsigs.addElement(bottleAtPos2E);
-              S13484=1;
+              S15169=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              S13484=1;
+              S15169=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
@@ -124,18 +267,18 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 1 : 
-            S13484=1;
-            S13484=0;
-            if(bottleAtPos2.getprestatus()){//sysj\plantFiller.sysj line: 60, column: 24
-              bottleAtPos2E.setPresent();//sysj\plantFiller.sysj line: 60, column: 38
+            S15169=1;
+            S15169=0;
+            if(bottleAtPos2.getprestatus()){//sysj\plantFiller.sysj line: 69, column: 24
+              bottleAtPos2E.setPresent();//sysj\plantFiller.sysj line: 69, column: 38
               currsigs.addElement(bottleAtPos2E);
-              S13484=1;
+              S15169=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              S13484=1;
+              S15169=1;
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
@@ -148,8 +291,8 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13526(int [] tdone, int [] ends){
-        switch(S13508){
+  public void thread15557(int [] tdone, int [] ends){
+        switch(S15233){
       case 0 : 
         active[6]=0;
         ends[6]=0;
@@ -157,27 +300,47 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        thread13527(tdone,ends);
-        thread13528(tdone,ends);
-        thread13529(tdone,ends);
-        int biggest13530 = 0;
-        if(ends[7]>=biggest13530){
-          biggest13530=ends[7];
+        thread15558(tdone,ends);
+        thread15559(tdone,ends);
+        thread15560(tdone,ends);
+        thread15561(tdone,ends);
+        thread15562(tdone,ends);
+        thread15563(tdone,ends);
+        thread15564(tdone,ends);
+        thread15565(tdone,ends);
+        int biggest15566 = 0;
+        if(ends[7]>=biggest15566){
+          biggest15566=ends[7];
         }
-        if(ends[8]>=biggest13530){
-          biggest13530=ends[8];
+        if(ends[8]>=biggest15566){
+          biggest15566=ends[8];
         }
-        if(ends[9]>=biggest13530){
-          biggest13530=ends[9];
+        if(ends[9]>=biggest15566){
+          biggest15566=ends[9];
         }
-        if(biggest13530 == 1){
+        if(ends[10]>=biggest15566){
+          biggest15566=ends[10];
+        }
+        if(ends[11]>=biggest15566){
+          biggest15566=ends[11];
+        }
+        if(ends[12]>=biggest15566){
+          biggest15566=ends[12];
+        }
+        if(ends[13]>=biggest15566){
+          biggest15566=ends[13];
+        }
+        if(ends[14]>=biggest15566){
+          biggest15566=ends[14];
+        }
+        if(biggest15566 == 1){
           active[6]=1;
           ends[6]=1;
           tdone[6]=1;
         }
         //FINXME code
-        if(biggest13530 == 0){
-          S13508=0;
+        if(biggest15566 == 0){
+          S15233=0;
           active[6]=0;
           ends[6]=0;
           tdone[6]=1;
@@ -187,8 +350,8 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13525(int [] tdone, int [] ends){
-        switch(S13482){
+  public void thread15556(int [] tdone, int [] ends){
+        switch(S15167){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -196,16 +359,16 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S13431){
+        switch(S15116){
           case 0 : 
-            if((dosUnitValveExtend.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 48, column: 20
-              S13431=1;
+            if((dosUnitValveExtend.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 57, column: 20
+              S15116=1;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
-              dosUnitFilled.setPresent();//sysj\plantFiller.sysj line: 49, column: 5
+              dosUnitFilled.setPresent();//sysj\plantFiller.sysj line: 58, column: 5
               currsigs.addElement(dosUnitFilled);
               active[5]=1;
               ends[5]=1;
@@ -214,16 +377,16 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 51, column: 10
-              S13431=2;
-              if((dosUnitValveRetract.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 52, column: 20
-                S13431=3;
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 60, column: 10
+              S15116=2;
+              if((dosUnitValveRetract.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 61, column: 20
+                S15116=3;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
               }
               else {
-                dosUnitEvac.setPresent();//sysj\plantFiller.sysj line: 53, column: 5
+                dosUnitEvac.setPresent();//sysj\plantFiller.sysj line: 62, column: 5
                 currsigs.addElement(dosUnitEvac);
                 active[5]=1;
                 ends[5]=1;
@@ -238,14 +401,14 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 2 : 
-            if((dosUnitValveRetract.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 52, column: 20
-              S13431=3;
+            if((dosUnitValveRetract.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 61, column: 20
+              S15116=3;
               active[5]=1;
               ends[5]=1;
               tdone[5]=1;
             }
             else {
-              dosUnitEvac.setPresent();//sysj\plantFiller.sysj line: 53, column: 5
+              dosUnitEvac.setPresent();//sysj\plantFiller.sysj line: 62, column: 5
               currsigs.addElement(dosUnitEvac);
               active[5]=1;
               ends[5]=1;
@@ -254,16 +417,16 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 55, column: 10
-              S13431=0;
-              if((dosUnitValveExtend.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 48, column: 20
-                S13431=1;
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 64, column: 10
+              S15116=0;
+              if((dosUnitValveExtend.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 57, column: 20
+                S15116=1;
                 active[5]=1;
                 ends[5]=1;
                 tdone[5]=1;
               }
               else {
-                dosUnitFilled.setPresent();//sysj\plantFiller.sysj line: 49, column: 5
+                dosUnitFilled.setPresent();//sysj\plantFiller.sysj line: 58, column: 5
                 currsigs.addElement(dosUnitFilled);
                 active[5]=1;
                 ends[5]=1;
@@ -283,8 +446,8 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13524(int [] tdone, int [] ends){
-        switch(S13423){
+  public void thread15555(int [] tdone, int [] ends){
+        switch(S15108){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -292,17 +455,17 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S13340){
+        switch(S15057){
           case 0 : 
-            if((valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 33, column: 21
-              S13340=1;
+            if((valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 44, column: 21
+              S15057=1;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              inletOff_1.setPresent();//sysj\plantFiller.sysj line: 35, column: 5
-              currsigs.addElement(inletOff_1);
+              inletOff.setPresent();//sysj\plantFiller.sysj line: 45, column: 5
+              currsigs.addElement(inletOff);
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -310,18 +473,17 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 37, column: 10
-              S13340=2;
-              if((!valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 38, column: 20
-                S13340=3;
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 47, column: 10
+              S15057=2;
+              if((!valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 48, column: 20
+                S15057=3;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                System.out.println("inletOn");//sysj\plantFiller.sysj line: 39, column: 5
-                inletOn_1.setPresent();//sysj\plantFiller.sysj line: 40, column: 5
-                currsigs.addElement(inletOn_1);
+                inletOn.setPresent();//sysj\plantFiller.sysj line: 49, column: 5
+                currsigs.addElement(inletOn);
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -335,15 +497,15 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 2 : 
-            if((!valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 38, column: 20
-              S13340=3;
+            if((!valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 48, column: 20
+              S15057=3;
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
             }
             else {
-              inletOn_1.setPresent();//sysj\plantFiller.sysj line: 40, column: 5
-              currsigs.addElement(inletOn_1);
+              inletOn.setPresent();//sysj\plantFiller.sysj line: 49, column: 5
+              currsigs.addElement(inletOn);
               active[4]=1;
               ends[4]=1;
               tdone[4]=1;
@@ -351,18 +513,17 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 42, column: 10
-              S13340=0;
-              if((valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 33, column: 21
-                S13340=1;
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 51, column: 10
+              S15057=0;
+              if((valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 44, column: 21
+                S15057=1;
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
               }
               else {
-                System.out.println("inletOff");//sysj\plantFiller.sysj line: 34, column: 5
-                inletOff_1.setPresent();//sysj\plantFiller.sysj line: 35, column: 5
-                currsigs.addElement(inletOff_1);
+                inletOff.setPresent();//sysj\plantFiller.sysj line: 45, column: 5
+                currsigs.addElement(inletOff);
                 active[4]=1;
                 ends[4]=1;
                 tdone[4]=1;
@@ -381,8 +542,8 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13523(int [] tdone, int [] ends){
-        switch(S13328){
+  public void thread15554(int [] tdone, int [] ends){
+        switch(S15049){
       case 0 : 
         active[3]=0;
         ends[3]=0;
@@ -390,18 +551,95 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        bottleAtPos2.setPresent();//sysj\plantFiller.sysj line: 27, column: 4
-        currsigs.addElement(bottleAtPos2);
-        active[3]=1;
-        ends[3]=1;
-        tdone[3]=1;
+        switch(S14998){
+          case 0 : 
+            if((jobDone.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 31, column: 21
+              S14998=1;
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            else {
+              bottleAtPos2.setPresent();//sysj\plantFiller.sysj line: 32, column: 5
+              currsigs.addElement(bottleAtPos2);
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            break;
+          
+          case 1 : 
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 34, column: 10
+              S14998=2;
+              if((!jobDone.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 35, column: 21
+                S14998=3;
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+              else {
+                jobDoneN.setPresent();//sysj\plantFiller.sysj line: 36, column: 5
+                currsigs.addElement(jobDoneN);
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+            }
+            else {
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            break;
+          
+          case 2 : 
+            if((!jobDone.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 35, column: 21
+              S14998=3;
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            else {
+              jobDoneN.setPresent();//sysj\plantFiller.sysj line: 36, column: 5
+              currsigs.addElement(jobDoneN);
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            break;
+          
+          case 3 : 
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 38, column: 10
+              S14998=0;
+              if((jobDone.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 31, column: 21
+                S14998=1;
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+              else {
+                bottleAtPos2.setPresent();//sysj\plantFiller.sysj line: 32, column: 5
+                currsigs.addElement(bottleAtPos2);
+                active[3]=1;
+                ends[3]=1;
+                tdone[3]=1;
+              }
+            }
+            else {
+              active[3]=1;
+              ends[3]=1;
+              tdone[3]=1;
+            }
+            break;
+          
+        }
         break;
       
     }
   }
 
-  public void thread13522(int [] tdone, int [] ends){
-        switch(S13320){
+  public void thread15553(int [] tdone, int [] ends){
+        switch(S14990){
       case 0 : 
         active[2]=0;
         ends[2]=0;
@@ -409,17 +647,17 @@ public class PlantFiller extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S13237){
+        switch(S14939){
           case 0 : 
-            if((valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 12, column: 21
-              S13237=1;
+            if((valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 18, column: 21
+              S14939=1;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              injectorOff_1.setPresent();//sysj\plantFiller.sysj line: 14, column: 5
-              currsigs.addElement(injectorOff_1);
+              injectorOff.setPresent();//sysj\plantFiller.sysj line: 19, column: 5
+              currsigs.addElement(injectorOff);
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -427,18 +665,17 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 1 : 
-            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 16, column: 10
-              S13237=2;
-              if((!valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 17, column: 20
-                S13237=3;
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 21, column: 10
+              S14939=2;
+              if((!valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 22, column: 20
+                S14939=3;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                System.out.println("injectorOn");//sysj\plantFiller.sysj line: 18, column: 5
-                injectorOn_1.setPresent();//sysj\plantFiller.sysj line: 19, column: 5
-                currsigs.addElement(injectorOn_1);
+                injectorOn.setPresent();//sysj\plantFiller.sysj line: 23, column: 5
+                currsigs.addElement(injectorOn);
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -452,15 +689,15 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 2 : 
-            if((!valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 17, column: 20
-              S13237=3;
+            if((!valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 22, column: 20
+              S14939=3;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              injectorOn_1.setPresent();//sysj\plantFiller.sysj line: 19, column: 5
-              currsigs.addElement(injectorOn_1);
+              injectorOn.setPresent();//sysj\plantFiller.sysj line: 23, column: 5
+              currsigs.addElement(injectorOn);
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
@@ -468,18 +705,17 @@ public class PlantFiller extends ClockDomain{
             break;
           
           case 3 : 
-            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 21, column: 10
-              S13237=0;
-              if((valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 12, column: 21
-                S13237=1;
+            if(!enable.getprestatus()){//sysj\plantFiller.sysj line: 25, column: 10
+              S14939=0;
+              if((valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 18, column: 21
+                S14939=1;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                System.out.println("injectorOff");//sysj\plantFiller.sysj line: 13, column: 5
-                injectorOff_1.setPresent();//sysj\plantFiller.sysj line: 14, column: 5
-                currsigs.addElement(injectorOff_1);
+                injectorOff.setPresent();//sysj\plantFiller.sysj line: 19, column: 5
+                currsigs.addElement(injectorOff);
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -498,10 +734,90 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13519(int [] tdone, int [] ends){
-        S13506=1;
-    if(dosUnitFilled.getprestatus()){//sysj\plantFiller.sysj line: 64, column: 24
-      dosUnitFilledE.setPresent();//sysj\plantFiller.sysj line: 64, column: 39
+  public void thread15550(int [] tdone, int [] ends){
+        S15231=1;
+    if(jobDoneN.getprestatus()){//sysj\plantFiller.sysj line: 83, column: 24
+      jobDoneE.setPresent();//sysj\plantFiller.sysj line: 83, column: 34
+      currsigs.addElement(jobDoneE);
+      active[14]=1;
+      ends[14]=1;
+      tdone[14]=1;
+    }
+    else {
+      active[14]=1;
+      ends[14]=1;
+      tdone[14]=1;
+    }
+  }
+
+  public void thread15549(int [] tdone, int [] ends){
+        S15223=1;
+    if(inletOff.getprestatus()){//sysj\plantFiller.sysj line: 81, column: 24
+      inletOffE.setPresent();//sysj\plantFiller.sysj line: 81, column: 34
+      currsigs.addElement(inletOffE);
+      active[13]=1;
+      ends[13]=1;
+      tdone[13]=1;
+    }
+    else {
+      active[13]=1;
+      ends[13]=1;
+      tdone[13]=1;
+    }
+  }
+
+  public void thread15548(int [] tdone, int [] ends){
+        S15215=1;
+    if(inletOn.getprestatus()){//sysj\plantFiller.sysj line: 79, column: 24
+      inletOnE.setPresent();//sysj\plantFiller.sysj line: 79, column: 33
+      currsigs.addElement(inletOnE);
+      active[12]=1;
+      ends[12]=1;
+      tdone[12]=1;
+    }
+    else {
+      active[12]=1;
+      ends[12]=1;
+      tdone[12]=1;
+    }
+  }
+
+  public void thread15547(int [] tdone, int [] ends){
+        S15207=1;
+    if(injectorOff.getprestatus()){//sysj\plantFiller.sysj line: 77, column: 24
+      injectorOffE.setPresent();//sysj\plantFiller.sysj line: 77, column: 37
+      currsigs.addElement(injectorOffE);
+      active[11]=1;
+      ends[11]=1;
+      tdone[11]=1;
+    }
+    else {
+      active[11]=1;
+      ends[11]=1;
+      tdone[11]=1;
+    }
+  }
+
+  public void thread15546(int [] tdone, int [] ends){
+        S15199=1;
+    if(injectorOn.getprestatus()){//sysj\plantFiller.sysj line: 75, column: 24
+      injectorOnE.setPresent();//sysj\plantFiller.sysj line: 75, column: 36
+      currsigs.addElement(injectorOnE);
+      active[10]=1;
+      ends[10]=1;
+      tdone[10]=1;
+    }
+    else {
+      active[10]=1;
+      ends[10]=1;
+      tdone[10]=1;
+    }
+  }
+
+  public void thread15545(int [] tdone, int [] ends){
+        S15191=1;
+    if(dosUnitFilled.getprestatus()){//sysj\plantFiller.sysj line: 73, column: 24
+      dosUnitFilledE.setPresent();//sysj\plantFiller.sysj line: 73, column: 39
       currsigs.addElement(dosUnitFilledE);
       active[9]=1;
       ends[9]=1;
@@ -514,10 +830,10 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13518(int [] tdone, int [] ends){
-        S13498=1;
-    if(dosUnitEvac.getprestatus()){//sysj\plantFiller.sysj line: 62, column: 24
-      dosUnitEvacE.setPresent();//sysj\plantFiller.sysj line: 62, column: 37
+  public void thread15544(int [] tdone, int [] ends){
+        S15183=1;
+    if(dosUnitEvac.getprestatus()){//sysj\plantFiller.sysj line: 71, column: 24
+      dosUnitEvacE.setPresent();//sysj\plantFiller.sysj line: 71, column: 37
       currsigs.addElement(dosUnitEvacE);
       active[8]=1;
       ends[8]=1;
@@ -530,58 +846,78 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13517(int [] tdone, int [] ends){
-        S13490=1;
-    S13484=0;
-    if(bottleAtPos2.getprestatus()){//sysj\plantFiller.sysj line: 60, column: 24
-      bottleAtPos2E.setPresent();//sysj\plantFiller.sysj line: 60, column: 38
+  public void thread15543(int [] tdone, int [] ends){
+        S15175=1;
+    S15169=0;
+    if(bottleAtPos2.getprestatus()){//sysj\plantFiller.sysj line: 69, column: 24
+      bottleAtPos2E.setPresent();//sysj\plantFiller.sysj line: 69, column: 38
       currsigs.addElement(bottleAtPos2E);
-      S13484=1;
+      S15169=1;
       active[7]=1;
       ends[7]=1;
       tdone[7]=1;
     }
     else {
-      S13484=1;
+      S15169=1;
       active[7]=1;
       ends[7]=1;
       tdone[7]=1;
     }
   }
 
-  public void thread13516(int [] tdone, int [] ends){
-        S13508=1;
-    thread13517(tdone,ends);
-    thread13518(tdone,ends);
-    thread13519(tdone,ends);
-    int biggest13520 = 0;
-    if(ends[7]>=biggest13520){
-      biggest13520=ends[7];
+  public void thread15542(int [] tdone, int [] ends){
+        S15233=1;
+    thread15543(tdone,ends);
+    thread15544(tdone,ends);
+    thread15545(tdone,ends);
+    thread15546(tdone,ends);
+    thread15547(tdone,ends);
+    thread15548(tdone,ends);
+    thread15549(tdone,ends);
+    thread15550(tdone,ends);
+    int biggest15551 = 0;
+    if(ends[7]>=biggest15551){
+      biggest15551=ends[7];
     }
-    if(ends[8]>=biggest13520){
-      biggest13520=ends[8];
+    if(ends[8]>=biggest15551){
+      biggest15551=ends[8];
     }
-    if(ends[9]>=biggest13520){
-      biggest13520=ends[9];
+    if(ends[9]>=biggest15551){
+      biggest15551=ends[9];
     }
-    if(biggest13520 == 1){
+    if(ends[10]>=biggest15551){
+      biggest15551=ends[10];
+    }
+    if(ends[11]>=biggest15551){
+      biggest15551=ends[11];
+    }
+    if(ends[12]>=biggest15551){
+      biggest15551=ends[12];
+    }
+    if(ends[13]>=biggest15551){
+      biggest15551=ends[13];
+    }
+    if(ends[14]>=biggest15551){
+      biggest15551=ends[14];
+    }
+    if(biggest15551 == 1){
       active[6]=1;
       ends[6]=1;
       tdone[6]=1;
     }
   }
 
-  public void thread13515(int [] tdone, int [] ends){
-        S13482=1;
-    S13431=0;
-    if((dosUnitValveExtend.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 48, column: 20
-      S13431=1;
+  public void thread15541(int [] tdone, int [] ends){
+        S15167=1;
+    S15116=0;
+    if((dosUnitValveExtend.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 57, column: 20
+      S15116=1;
       active[5]=1;
       ends[5]=1;
       tdone[5]=1;
     }
     else {
-      dosUnitFilled.setPresent();//sysj\plantFiller.sysj line: 49, column: 5
+      dosUnitFilled.setPresent();//sysj\plantFiller.sysj line: 58, column: 5
       currsigs.addElement(dosUnitFilled);
       active[5]=1;
       ends[5]=1;
@@ -589,47 +925,54 @@ public class PlantFiller extends ClockDomain{
     }
   }
 
-  public void thread13514(int [] tdone, int [] ends){
-        S13423=1;
-    S13340=0;
-    if((valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 33, column: 21
-      S13340=1;
+  public void thread15540(int [] tdone, int [] ends){
+        S15108=1;
+    S15057=0;
+    if((valveInletOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 44, column: 21
+      S15057=1;
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
     else {
-      System.out.println("inletOff");//sysj\plantFiller.sysj line: 34, column: 5
-      inletOff_1.setPresent();//sysj\plantFiller.sysj line: 35, column: 5
-      currsigs.addElement(inletOff_1);
+      inletOff.setPresent();//sysj\plantFiller.sysj line: 45, column: 5
+      currsigs.addElement(inletOff);
       active[4]=1;
       ends[4]=1;
       tdone[4]=1;
     }
   }
 
-  public void thread13513(int [] tdone, int [] ends){
-        S13328=1;
-    bottleAtPos2.setPresent();//sysj\plantFiller.sysj line: 27, column: 4
-    currsigs.addElement(bottleAtPos2);
-    active[3]=1;
-    ends[3]=1;
-    tdone[3]=1;
+  public void thread15539(int [] tdone, int [] ends){
+        S15049=1;
+    S14998=0;
+    if((jobDone.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 31, column: 21
+      S14998=1;
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
+    else {
+      bottleAtPos2.setPresent();//sysj\plantFiller.sysj line: 32, column: 5
+      currsigs.addElement(bottleAtPos2);
+      active[3]=1;
+      ends[3]=1;
+      tdone[3]=1;
+    }
   }
 
-  public void thread13512(int [] tdone, int [] ends){
-        S13320=1;
-    S13237=0;
-    if((valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 12, column: 21
-      S13237=1;
+  public void thread15538(int [] tdone, int [] ends){
+        S14990=1;
+    S14939=0;
+    if((valveInjectorOnOff.getprestatus() && enable.getprestatus())){//sysj\plantFiller.sysj line: 18, column: 21
+      S14939=1;
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
     }
     else {
-      System.out.println("injectorOff");//sysj\plantFiller.sysj line: 13, column: 5
-      injectorOff_1.setPresent();//sysj\plantFiller.sysj line: 14, column: 5
-      currsigs.addElement(injectorOff_1);
+      injectorOff.setPresent();//sysj\plantFiller.sysj line: 19, column: 5
+      currsigs.addElement(injectorOff);
       active[2]=1;
       ends[2]=1;
       tdone[2]=1;
@@ -643,82 +986,82 @@ public class PlantFiller extends ClockDomain{
     }
     
     RUN: while(true){
-      switch(S13510){
+      switch(S15536){
         case 0 : 
-          S13510=0;
+          S15536=0;
           break RUN;
         
         case 1 : 
-          S13510=2;
-          S13510=2;
-          injectorOn_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          injectorOff_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          inletOn_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          inletOff_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          thread13512(tdone,ends);
-          thread13513(tdone,ends);
-          thread13514(tdone,ends);
-          thread13515(tdone,ends);
-          thread13516(tdone,ends);
-          int biggest13521 = 0;
-          if(ends[2]>=biggest13521){
-            biggest13521=ends[2];
+          S15536=2;
+          S15536=2;
+          class GUI extends Object implements java.lang.Runnable {//sysj\plantFiller.sysj line: 8, column: 1
+            public void run() {//sysj\plantFiller.sysj line: 10, column: 21
+              org.compsys704.Filler.main(null);//sysj\plantFiller.sysj line: 11, column: 4
+            }
+            GUI(){//sysj\plantFiller.sysj line: 9, column: 42
+            }
           }
-          if(ends[3]>=biggest13521){
-            biggest13521=ends[3];
+          new Thread(new GUI()).start();//sysj\plantFiller.sysj line: 14, column: 2
+          thread15538(tdone,ends);
+          thread15539(tdone,ends);
+          thread15540(tdone,ends);
+          thread15541(tdone,ends);
+          thread15542(tdone,ends);
+          int biggest15552 = 0;
+          if(ends[2]>=biggest15552){
+            biggest15552=ends[2];
           }
-          if(ends[4]>=biggest13521){
-            biggest13521=ends[4];
+          if(ends[3]>=biggest15552){
+            biggest15552=ends[3];
           }
-          if(ends[5]>=biggest13521){
-            biggest13521=ends[5];
+          if(ends[4]>=biggest15552){
+            biggest15552=ends[4];
           }
-          if(ends[6]>=biggest13521){
-            biggest13521=ends[6];
+          if(ends[5]>=biggest15552){
+            biggest15552=ends[5];
           }
-          if(biggest13521 == 1){
+          if(ends[6]>=biggest15552){
+            biggest15552=ends[6];
+          }
+          if(biggest15552 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
         
         case 2 : 
-          injectorOn_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          injectorOff_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          inletOn_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          inletOff_1.setClear();//sysj\plantFiller.sysj line: 9, column: 2
-          thread13522(tdone,ends);
-          thread13523(tdone,ends);
-          thread13524(tdone,ends);
-          thread13525(tdone,ends);
-          thread13526(tdone,ends);
-          int biggest13531 = 0;
-          if(ends[2]>=biggest13531){
-            biggest13531=ends[2];
+          thread15553(tdone,ends);
+          thread15554(tdone,ends);
+          thread15555(tdone,ends);
+          thread15556(tdone,ends);
+          thread15557(tdone,ends);
+          int biggest15567 = 0;
+          if(ends[2]>=biggest15567){
+            biggest15567=ends[2];
           }
-          if(ends[3]>=biggest13531){
-            biggest13531=ends[3];
+          if(ends[3]>=biggest15567){
+            biggest15567=ends[3];
           }
-          if(ends[4]>=biggest13531){
-            biggest13531=ends[4];
+          if(ends[4]>=biggest15567){
+            biggest15567=ends[4];
           }
-          if(ends[5]>=biggest13531){
-            biggest13531=ends[5];
+          if(ends[5]>=biggest15567){
+            biggest15567=ends[5];
           }
-          if(ends[6]>=biggest13531){
-            biggest13531=ends[6];
+          if(ends[6]>=biggest15567){
+            biggest15567=ends[6];
           }
-          if(biggest13531 == 1){
+          if(biggest15567 == 1){
             active[1]=1;
             ends[1]=1;
             break RUN;
           }
           //FINXME code
-          if(biggest13531 == 0){
-            S13510=0;
+          if(biggest15567 == 0){
+            S15536=0;
             active[1]=0;
             ends[1]=0;
-            S13510=0;
+            S15536=0;
             break RUN;
           }
         
@@ -727,17 +1070,13 @@ public class PlantFiller extends ClockDomain{
   }
 
   public void init(){
-    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
-    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
-    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] active1 = {1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1};
+    char [] paused1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
+    char [] suspended1 = {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0};
     paused = paused1;
     active = active1;
     suspended = suspended1;
     // Now instantiate all the local signals ONLY
-    injectorOn_1 = new Signal();
-    injectorOff_1 = new Signal();
-    inletOn_1 = new Signal();
-    inletOff_1 = new Signal();
     // --------------------------------------------------
   }
   
@@ -756,6 +1095,7 @@ public class PlantFiller extends ClockDomain{
           valveInletOnOff.gethook();
           dosUnitValveRetract.gethook();
           dosUnitValveExtend.gethook();
+          jobDone.gethook();
           enable.gethook();
           df = true;
         }
@@ -765,17 +1105,24 @@ public class PlantFiller extends ClockDomain{
       valveInletOnOff.setpreclear();
       dosUnitValveRetract.setpreclear();
       dosUnitValveExtend.setpreclear();
+      jobDone.setpreclear();
       enable.setpreclear();
       bottleAtPos2.setpreclear();
       dosUnitEvac.setpreclear();
       dosUnitFilled.setpreclear();
+      injectorOn.setpreclear();
+      injectorOff.setpreclear();
+      inletOn.setpreclear();
+      inletOff.setpreclear();
+      jobDoneN.setpreclear();
       bottleAtPos2E.setpreclear();
       dosUnitEvacE.setpreclear();
       dosUnitFilledE.setpreclear();
-      injectorOn_1.setpreclear();
-      injectorOff_1.setpreclear();
-      inletOn_1.setpreclear();
-      inletOff_1.setpreclear();
+      injectorOnE.setpreclear();
+      injectorOffE.setpreclear();
+      inletOnE.setpreclear();
+      inletOffE.setpreclear();
+      jobDoneE.setpreclear();
       int dummyint = 0;
       for(int qw=0;qw<currsigs.size();++qw){
         dummyint = ((Signal)currsigs.elementAt(qw)).getStatus() ? ((Signal)currsigs.elementAt(qw)).setprepresent() : ((Signal)currsigs.elementAt(qw)).setpreclear();
@@ -794,6 +1141,9 @@ public class PlantFiller extends ClockDomain{
       dummyint = dosUnitValveExtend.getStatus() ? dosUnitValveExtend.setprepresent() : dosUnitValveExtend.setpreclear();
       dosUnitValveExtend.setpreval(dosUnitValveExtend.getValue());
       dosUnitValveExtend.setClear();
+      dummyint = jobDone.getStatus() ? jobDone.setprepresent() : jobDone.setpreclear();
+      jobDone.setpreval(jobDone.getValue());
+      jobDone.setClear();
       dummyint = enable.getStatus() ? enable.setprepresent() : enable.setpreclear();
       enable.setpreval(enable.getValue());
       enable.setClear();
@@ -803,22 +1153,39 @@ public class PlantFiller extends ClockDomain{
       dosUnitEvac.setClear();
       dosUnitFilled.sethook();
       dosUnitFilled.setClear();
+      injectorOn.sethook();
+      injectorOn.setClear();
+      injectorOff.sethook();
+      injectorOff.setClear();
+      inletOn.sethook();
+      inletOn.setClear();
+      inletOff.sethook();
+      inletOff.setClear();
+      jobDoneN.sethook();
+      jobDoneN.setClear();
       bottleAtPos2E.sethook();
       bottleAtPos2E.setClear();
       dosUnitEvacE.sethook();
       dosUnitEvacE.setClear();
       dosUnitFilledE.sethook();
       dosUnitFilledE.setClear();
-      injectorOn_1.setClear();
-      injectorOff_1.setClear();
-      inletOn_1.setClear();
-      inletOff_1.setClear();
+      injectorOnE.sethook();
+      injectorOnE.setClear();
+      injectorOffE.sethook();
+      injectorOffE.setClear();
+      inletOnE.sethook();
+      inletOnE.setClear();
+      inletOffE.sethook();
+      inletOffE.setClear();
+      jobDoneE.sethook();
+      jobDoneE.setClear();
       if(paused[1]!=0 || suspended[1]!=0 || active[1]!=1);
       else{
         valveInjectorOnOff.gethook();
         valveInletOnOff.gethook();
         dosUnitValveRetract.gethook();
         dosUnitValveExtend.gethook();
+        jobDone.gethook();
         enable.gethook();
       }
       runFinisher();

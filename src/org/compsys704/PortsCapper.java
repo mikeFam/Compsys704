@@ -1,5 +1,4 @@
 package org.compsys704;
-
 public class PortsCapper {
 	public static final String ENABLE_SIGNAL = "PlantCapperCD.enable";
 	public static final int PORT_LOADER_PLANT = 10001;

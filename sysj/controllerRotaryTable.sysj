@@ -42,10 +42,8 @@ ControllerRotaryTable(
 	{//Timer
 		while(true){
 			await(startTimer);
-			System.out.println("startTimer");
 			waitl(0.5 s);
 			emit stopTimer; 
-			System.out.println("stopTimer");
 			pause;
 		}
 	}

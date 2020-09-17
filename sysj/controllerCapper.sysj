@@ -1,5 +1,5 @@
 ControllerCapper(
-		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos;
+		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, capGrip, capNotGrip;
 		output signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
 		input Integer signal mode;
 		input signal cylPos5ZaxisExtendM, gripperTurnRetractM, gripperTurnExtendM, capGripperPos5ExtendM, cylClampBottleExtendM;
@@ -7,7 +7,6 @@ ControllerCapper(
 ->
 {
 	signal selectM, selectA;
-	
 	{//Manual
 		while(true){
 			await(selectM);
@@ -44,12 +43,18 @@ ControllerCapper(
 					{sustain cylPos5ZaxisExtend;}
 					||
 					{await (gripperZAxisLowered);
-					{System.out.println("Gripper twisting");
-					sustain gripperTurnExtend;}
-					||
-					{System.out.println("Cap gripped");
-					sustain capGripperPos5Extend;}
-					}}
+						{System.out.println("Cap gripping");
+						sustain capGripperPos5Extend;}
+						||
+						{await (capGrip);
+							System.out.println("CapGrip");
+							abort (gripperTurnFinalPos){
+								System.out.println("Cap turned");
+								sustain gripperTurnExtend;
+							}
+						}
+					}
+				}
 				System.out.println("Release/ungrip cap");
 				abort (gripperTurnHomePos) {
 					System.out.println("Gripper untwisting");

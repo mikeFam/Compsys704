@@ -17,16 +17,15 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class Capper extends JFrame {
+public class RotaryTable extends JFrame {
 	private JPanel panel;
 
-	public Capper() {
-//		this.setPreferredSize(new Dimension(200, 300));
-		panel = new CanvasCapper();
+	public RotaryTable() {
+		panel = new RotaryTableCanvas();
 		panel.setPreferredSize(new Dimension(960, 720));
 		panel.setBackground(Color.WHITE);
 		JButton enable = new JButton("enable");
-		enable.addActionListener(new SignalClient(PortsCapper.PORT_LOADER_PLANT, PortsCapper.ENABLE_SIGNAL));
+		enable.addActionListener(new SignalClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.ENABLE_SIGNAL));
 		JPanel ss = new JPanel();
 		ss.add(enable);
 		this.setLayout(new GridBagLayout());
@@ -39,7 +38,7 @@ public class Capper extends JFrame {
 		this.add(ss,c);
 		
 		// Radio buttons
-		SignalRadioClient src = new SignalRadioClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper .SIGNAL_Mode);
+		SignalRadioClient src = new SignalRadioClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.SIGNAL_Mode);
 		JRadioButton mmode = new JRadioButton("Manual");
 		mmode.setActionCommand("1");
 		mmode.addActionListener(src);
@@ -59,25 +58,21 @@ public class Capper extends JFrame {
 		pan.setBorder(BorderFactory.createTitledBorder("Mode selector"));
 
 		// Checkboxes
-		JCheckBox pe = new JCheckBox("gripperArm");
+		JCheckBox pe = new JCheckBox("sensor alligned");
 		pe.setEnabled(false);
-		pe.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_EXTEND));
-		JCheckBox pr = new JCheckBox("clamp");
-		pr.setEnabled(false);
-		pr.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_CLAMP));
-		JCheckBox vo = new JCheckBox("grip");
+		pe.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.ALIGNEDSENSOR_SIGNAL));
+		JCheckBox vo = new JCheckBox("capped bottle at pos 1");
 		vo.setEnabled(false);
-		vo.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_GRIP));
-		JCheckBox as = new JCheckBox("gripperUntwist");
+		vo.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.CAP_AT_POS_1_SIGNAL));
+		JCheckBox as = new JCheckBox("bottle at pos 5");
 		as.setEnabled(false);
-		as.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_HOME));
-		JCheckBox ad = new JCheckBox("gripperTwist");
+		as.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.BOTTLE_POS_5_SIGNAL));
+		JCheckBox ad = new JCheckBox("rotary on");
 		ad.setEnabled(false);
-		ad.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_FINAL));
+		ad.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.SIGNAL_ROTARY_ON));
 
 		JPanel pan2 = new JPanel(new GridLayout(2, 2));
 		pan2.add(pe);
-		pan2.add(pr);
 		pan2.add(vo);
 		pan2.add(as);
 		pan2.add(ad);
@@ -91,18 +86,18 @@ public class Capper extends JFrame {
 		c.gridy = 2;
 		this.add(pan3,c);
 		
-		this.setTitle("Capper");
+		this.setTitle("RotaryTable");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 	}
 
 	public static void main(String[] args) {
-		Capper cl = new Capper();
+		RotaryTable cl = new RotaryTable();
 		cl.pack();
 		cl.setVisible(true);
 		
-		SignalServer<CapperVizWorker> server = new SignalServer<CapperVizWorker>(PortsCapper.PORT_LOADER_VIZ, CapperVizWorker.class);
+		SignalServer<RotaryVizWorker> server = new SignalServer<RotaryVizWorker>(RotaryTablePorts.PORT_LOADER_VIZ, RotaryVizWorker.class);
 		new Thread(server).start();
 		while(true){
 			try {

@@ -17,16 +17,16 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JRadioButton;
 
-public class Capper extends JFrame {
+public class Filler extends JFrame {
 	private JPanel panel;
 
-	public Capper() {
+	public Filler() {
 //		this.setPreferredSize(new Dimension(200, 300));
-		panel = new CanvasCapper();
+		panel = new CanvasFiller();
 		panel.setPreferredSize(new Dimension(960, 720));
 		panel.setBackground(Color.WHITE);
 		JButton enable = new JButton("enable");
-		enable.addActionListener(new SignalClient(PortsCapper.PORT_LOADER_PLANT, PortsCapper.ENABLE_SIGNAL));
+		enable.addActionListener(new SignalClient(PortsFiller.PORT_LOADER_PLANT, PortsFiller.ENABLE_SIGNAL));
 		JPanel ss = new JPanel();
 		ss.add(enable);
 		this.setLayout(new GridBagLayout());
@@ -39,7 +39,7 @@ public class Capper extends JFrame {
 		this.add(ss,c);
 		
 		// Radio buttons
-		SignalRadioClient src = new SignalRadioClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper .SIGNAL_Mode);
+		SignalRadioClient src = new SignalRadioClient(PortsFiller.PORT_LOADER_CONTROLLER, PortsFiller.SIGNAL_Mode);
 		JRadioButton mmode = new JRadioButton("Manual");
 		mmode.setActionCommand("1");
 		mmode.addActionListener(src);
@@ -59,25 +59,21 @@ public class Capper extends JFrame {
 		pan.setBorder(BorderFactory.createTitledBorder("Mode selector"));
 
 		// Checkboxes
-		JCheckBox pe = new JCheckBox("gripperArm");
+		JCheckBox pe = new JCheckBox("injector");
 		pe.setEnabled(false);
-		pe.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_EXTEND));
-		JCheckBox pr = new JCheckBox("clamp");
-		pr.setEnabled(false);
-		pr.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_CLAMP));
-		JCheckBox vo = new JCheckBox("grip");
+		pe.addItemListener(new SignalCheckBoxClient(PortsFiller.PORT_LOADER_CONTROLLER, PortsFiller.SIGNAL_INJECTOR_ON));
+		JCheckBox vo = new JCheckBox("inlet");
 		vo.setEnabled(false);
-		vo.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_GRIP));
-		JCheckBox as = new JCheckBox("gripperUntwist");
+		vo.addItemListener(new SignalCheckBoxClient(PortsFiller.PORT_LOADER_CONTROLLER, PortsFiller.SIGNAL_INLET_ON));
+		JCheckBox as = new JCheckBox("valve retract");
 		as.setEnabled(false);
-		as.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_HOME));
-		JCheckBox ad = new JCheckBox("gripperTwist");
+		as.addItemListener(new SignalCheckBoxClient(PortsFiller.PORT_LOADER_CONTROLLER, PortsFiller.SIGNAL_VALVE_RETRACT));
+		JCheckBox ad = new JCheckBox("valve extend");
 		ad.setEnabled(false);
-		ad.addItemListener(new SignalCheckBoxClient(PortsCapper.PORT_LOADER_CONTROLLER, PortsCapper.SIGNAL_GRIPPER_FINAL));
+		ad.addItemListener(new SignalCheckBoxClient(PortsFiller.PORT_LOADER_CONTROLLER, PortsFiller.SIGNAL_VALVE_EXTEND));
 
 		JPanel pan2 = new JPanel(new GridLayout(2, 2));
 		pan2.add(pe);
-		pan2.add(pr);
 		pan2.add(vo);
 		pan2.add(as);
 		pan2.add(ad);
@@ -91,18 +87,18 @@ public class Capper extends JFrame {
 		c.gridy = 2;
 		this.add(pan3,c);
 		
-		this.setTitle("Capper");
+		this.setTitle("Filler");
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
 		this.setLocationRelativeTo(null);
 		this.setResizable(false);
 	}
 
 	public static void main(String[] args) {
-		Capper cl = new Capper();
+		Filler cl = new Filler();
 		cl.pack();
 		cl.setVisible(true);
 		
-		SignalServer<CapperVizWorker> server = new SignalServer<CapperVizWorker>(PortsCapper.PORT_LOADER_VIZ, CapperVizWorker.class);
+		SignalServer<FillerVizWorker> server = new SignalServer<FillerVizWorker>(PortsFiller.PORT_LOADER_VIZ, FillerVizWorker.class);
 		new Thread(server).start();
 		while(true){
 			try {

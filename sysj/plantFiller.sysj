@@ -1,21 +1,25 @@
 PlantFiller(
-		input signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend;
+		input signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend, jobDone;
 		input signal enable;
-		output signal bottleAtPos2, dosUnitEvac, dosUnitFilled;
-		output signal bottleAtPos2E, dosUnitEvacE, dosUnitFilledE;
+		output signal bottleAtPos2, dosUnitEvac, dosUnitFilled, injectorOn, injectorOff, inletOn, inletOff, jobDoneN;
+		output signal bottleAtPos2E, dosUnitEvacE, dosUnitFilledE, injectorOnE, injectorOffE, inletOnE, inletOffE, jobDoneE;
 		)
 ->
 {
-	signal injectorOn, injectorOff, inletOn, inletOff;
+	class GUI implements java.lang.Runnable {
+		public void run() {
+			org.compsys704.Filler.main(null);
+		}
+	}
+	new Thread(new GUI()).start();
+
 	{//Injector
 		while(true){
 			abort (immediate (valveInjectorOnOff && enable)){
-				System.out.println("injectorOff");
 				sustain injectorOff;
 			}
 			await(!enable);
 			abort(immediate (!valveInjectorOnOff && enable)){
-				System.out.println("injectorOn");
 				sustain injectorOn;
 			}
 			await(!enable);
@@ -24,19 +28,24 @@ PlantFiller(
 	||
 	{//Bottle
 		while(true){
-			sustain bottleAtPos2;
+			abort (immediate (jobDone && enable)){
+				sustain bottleAtPos2;
+			}
+			await(!enable);
+			abort (immediate (!jobDone && enable)){
+				sustain jobDoneN;
+			}
+			await(!enable);	
 		}
 	}
 	||
 	{//Inlet
 		while(true){
 			abort (immediate (valveInletOnOff && enable)){
-				System.out.println("inletOff");
 				sustain inletOff;
 			}
 			await(!enable);
 			abort(immediate (!valveInletOnOff && enable)){
-				System.out.println("inletOn");
 				sustain inletOn;
 			}
 			await(!enable);
@@ -62,5 +71,15 @@ PlantFiller(
 		{while(true){present(dosUnitEvac){emit dosUnitEvacE;} pause;}}
 		||
 		{while(true){present(dosUnitFilled){emit dosUnitFilledE;} pause;}}
+		||
+		{while(true){present(injectorOn){emit injectorOnE;} pause;}}
+		||
+		{while(true){present(injectorOff){emit injectorOffE;} pause;}}
+		||
+		{while(true){present(inletOn){emit inletOnE;} pause;}}
+		||
+		{while(true){present(inletOff){emit inletOffE;} pause;}}
+		||
+		{while(true){present(jobDoneN){emit jobDoneE;} pause;}}
 	}
 }

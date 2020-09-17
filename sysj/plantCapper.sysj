@@ -1,8 +1,8 @@
 PlantCapper(
 		input signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
 		input signal enable;
-		output signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, clampRetracted, clampExtended;
-		output signal bottleAtPos4E, gripperZAxisLoweredE, gripperZAxisLiftedE, gripperTurnHomePosE, gripperTurnFinalPosE, clampRetractedE, clampExtendedE;
+		output signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, clampRetracted, clampExtended, capGrip, capNotGrip;
+		output signal bottleAtPos4E, gripperZAxisLoweredE, gripperZAxisLiftedE, gripperTurnHomePosE, gripperTurnFinalPosE, clampRetractedE, clampExtendedE, capGripE, capNotGripE;
 		)
 ->
 {
@@ -15,16 +15,14 @@ PlantCapper(
 	new Thread(new GUI()).start();
 	
 	
-	signal bottleClamp, bottleNotClamp, capGrip, capNotGrip;
+	signal bottleClamp, bottleNotClamp;
 	{//ZAxis
 		while(true){
 			abort (immediate (cylPos5ZaxisExtend && enable)){
-				System.out.println("gripperZAxisLifted");
 				sustain gripperZAxisLifted;
 			}
 			await(!enable);
 			abort(immediate (!cylPos5ZaxisExtend && enable)){
-				System.out.println("gripperZAxisLowered");
 				sustain gripperZAxisLowered;
 			}
 			await(!enable);
@@ -35,12 +33,10 @@ PlantCapper(
 		while(true){
 			{
 				abort (immediate (gripperTurnExtend && enable)){
-					System.out.println("gripperTurnHomePos");
 					sustain gripperTurnHomePos;
 				}
 				await(!enable);
 				abort(immediate (gripperTurnRetract && enable)){
-					System.out.println("gripperTurnFinalPos");
 					sustain gripperTurnFinalPos;
 				}
 				await(!enable);
@@ -48,12 +44,10 @@ PlantCapper(
 			||
 			{
 				abort (immediate (capGripperPos5Extend && enable)){
-					System.out.println("capNotGrip");
 					sustain capNotGrip;
 				}
 				await(!enable);
 				abort(immediate (!capGripperPos5Extend && enable)){
-					System.out.println("capGrip");
 					sustain capGrip;
 				}
 				await(!enable);
@@ -64,12 +58,10 @@ PlantCapper(
 	{//Clamp
 		while(true){
 			abort (immediate (cylClampBottleExtend && enable)){
-				System.out.println("bottleNotClamp");
 				sustain clampRetracted;
 			}
 			await(!enable);
 			abort(immediate (!cylClampBottleExtend && enable)){
-				System.out.println("bottleClamp");
 				sustain clampExtended;
 			}
 			await(!enable);
@@ -96,5 +88,9 @@ PlantCapper(
 		{while(true){present(clampRetracted){emit clampRetractedE;} pause;}}
 		||
 		{while(true){present(clampExtended){emit clampExtendedE;} pause;}}
+		||
+		{while(true){present(capGrip){emit capGripE;} pause;}}
+		||
+		{while(true){present(capNotGrip){emit capNotGripE;} pause;}}
 	}
 }

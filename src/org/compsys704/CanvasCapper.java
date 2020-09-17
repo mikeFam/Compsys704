@@ -17,7 +17,7 @@ public class CanvasCapper extends JPanel {
 	BufferedImage gripper2;
 	BufferedImage gripper3;
 	BufferedImage gripper4;
-	
+
 	public CanvasCapper(){
 		try {
 			bottleCap = ImageIO.read(new File("res/bottle_cap.png"));
@@ -31,8 +31,7 @@ public class CanvasCapper extends JPanel {
 			e.printStackTrace();
 			System.exit(1);;
 		}
-	}
-	
+	}	
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
@@ -44,19 +43,36 @@ public class CanvasCapper extends JPanel {
 			g.drawImage(clamp2, 0, 0, null);
 		}
 		
-		if(States.GRIPPER_RETRACTED) {
+		if(States.GRIPPER_RETRACTED && States.GRIPPER_UNGRIPPED && States.GRIPPER_AT_SOURCE) {
 			g.drawImage(gripper1, 0, 0, null);
-		} else {
-			if (States.GRIPPER_GRIPPED) {
-				if (States.GRIPPER_AT_DEST) {
-					g.drawImage(gripper4, 0, 0, null);
-				} else {
-					g.drawImage(gripper3, 0, 0, null);
-				}
-			}
-			else {
-				g.drawImage(gripper2, 0, 0, null);
-			}
+		} 
+		
+		if (States.GRIPPER_RETRACTED && States.GRIPPER_UNGRIPPED && States.GRIPPER_AT_DEST) {
+			g.drawImage(gripper1, 0, 0, null);
 		}
+		
+		if (States.GRIPPER_RETRACTED && States.GRIPPER_GRIPPED && States.GRIPPER_AT_SOURCE) {
+			g.drawImage(gripper1, 0, 0, null);
+		}
+		
+		if (States.GRIPPER_RETRACTED && States.GRIPPER_GRIPPED && States.GRIPPER_AT_DEST) {
+			g.drawImage(gripper1, 0, 0, null);
+		}
+	
+		if(States.GRIPPER_EXTENDED && States.GRIPPER_UNGRIPPED && States.GRIPPER_AT_SOURCE) {
+			g.drawImage(gripper2, 0, 0, null);
+		} 
+		
+		if (States.GRIPPER_EXTENDED && States.GRIPPER_UNGRIPPED && States.GRIPPER_AT_DEST) {
+			g.drawImage(gripper2, 0, 0, null);
+		}
+		
+		if (States.GRIPPER_EXTENDED && States.GRIPPER_GRIPPED && States.GRIPPER_AT_SOURCE) {
+			g.drawImage(gripper3, 0, 0, null);
+		}
+			
+		if (States.GRIPPER_EXTENDED && States.GRIPPER_GRIPPED && States.GRIPPER_AT_DEST) {
+			g.drawImage(gripper4, 0, 0, null);
+		} 
 	}
 }

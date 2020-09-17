@@ -13,6 +13,8 @@
 			<oSignal Name="gripperZAxisLifted"  	To="ControllerCapperCD.gripperZAxisLifted"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="gripperTurnHomePos"  	To="ControllerCapperCD.gripperTurnHomePos"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="gripperTurnFinalPos"  	To="ControllerCapperCD.gripperTurnFinalPos"  	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="capGrip"  				To="ControllerCapperCD.capGrip"  				Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="capNotGrip"  			To="ControllerCapperCD.capNotGrip"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 		
 			<oSignal Name="bottleAtPos4E" 			To="UI.bottleAtPos4E" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
 			<oSignal Name="gripperZAxisLoweredE" 	To="UI.gripperZAxisLoweredE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
@@ -20,7 +22,9 @@
 			<oSignal Name="gripperTurnHomePosE"		To="UI.gripperTurnHomePosE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
 			<oSignal Name="gripperTurnFinalPosE" 	To="UI.gripperTurnFinalPosE" 					Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />	
 			<oSignal Name="clampRetractedE"		    To="UI.clampRetractedE" 					    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="clampExtendedE" 	        To="UI.clampExtendedE" 					        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />		
+			<oSignal Name="clampExtendedE" 	        To="UI.clampExtendedE" 					        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />	
+			<oSignal Name="capGripE" 	       		To="UI.capGripE" 					        	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />		
+			<oSignal Name="capNotGripE" 	        To="UI.capNotGripE" 					        Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />			
 		</ClockDomain>
 	</SubSystem>
 </System>
