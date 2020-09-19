@@ -38,5 +38,28 @@ public class RotaryTableCanvas extends JPanel {
 		super.paintComponent(g);
 		g.drawImage(rotaryTable1, 0, 0, null);
 		
+		if (States.CAP_AT_1) {
+			g.drawImage(capAt1, 0 ,0, null);
+		}
+		
+		if(States.BOTTLE_ROTARY_1 && States.ALIGNED) {
+			g.drawImage(bottleAt1, 0, 0, null);
+		}
+		
+		if(States.BOTTLE_ROTARY_2 && States.ALIGNED) {
+			g.drawImage(bottleAt2, 0, 0, null);
+		}
+		
+		if(States.BOTTLE_ROTARY_3 && States.ALIGNED) {
+			g.drawImage(bottleAt3, 0, 0, null);
+		}
+		
+		if(States.BOTTLE_ROTARY_4 && States.ALIGNED) {
+			g.drawImage(bottleAt4, 0, 0, null);
+		}
+		
+		if(States.BOTTLE_ROTARY_5 && States.ALIGNED) {
+			g.drawImage(bottleAt5, 0, 0, null);
+		}
 	}
 }

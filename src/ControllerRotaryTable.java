@@ -21,18 +21,18 @@ public class ControllerRotaryTable extends ClockDomain{
   private Signal selectA_1;
   private Signal startTimer_1;
   private Signal stopTimer_1;
-  private long __start_thread_6;//sysj\controllerRotaryTable.sysj line: 43, column: 3
+  private long __start_thread_6;//sysj\controllerRotaryTable.sysj line: 41, column: 3
   private int S9756 = 1;
   private int S9355 = 1;
-  private int S9307 = 1;
-  private int S9309 = 1;
+  private int S9321 = 1;
+  private int S9308 = 1;
   private int S9647 = 1;
-  private int S9357 = 1;
-  private int S9359 = 1;
-  private int S9361 = 1;
-  private int S9371 = 1;
+  private int S9413 = 1;
+  private int S9358 = 1;
+  private int S9360 = 1;
+  private int S9370 = 1;
   private int S9739 = 1;
-  private int S9649 = 1;
+  private int S9677 = 1;
   private int S9754 = 1;
   private int S9753 = 1;
   
@@ -50,17 +50,17 @@ public class ControllerRotaryTable extends ClockDomain{
       case 1 : 
         switch(S9753){
           case 0 : 
-            if(mode.getprestatus()){//sysj\controllerRotaryTable.sysj line: 54, column: 9
+            if(mode.getprestatus()){//sysj\controllerRotaryTable.sysj line: 50, column: 9
               S9753=1;
-              if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\controllerRotaryTable.sysj line: 56, column: 7
-                selectM_1.setPresent();//sysj\controllerRotaryTable.sysj line: 57, column: 5
+              if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\controllerRotaryTable.sysj line: 52, column: 7
+                selectM_1.setPresent();//sysj\controllerRotaryTable.sysj line: 53, column: 5
                 currsigs.addElement(selectM_1);
                 active[7]=1;
                 ends[7]=1;
                 tdone[7]=1;
               }
               else {
-                selectA_1.setPresent();//sysj\controllerRotaryTable.sysj line: 60, column: 5
+                selectA_1.setPresent();//sysj\controllerRotaryTable.sysj line: 56, column: 5
                 currsigs.addElement(selectA_1);
                 active[7]=1;
                 ends[7]=1;
@@ -75,15 +75,15 @@ public class ControllerRotaryTable extends ClockDomain{
             break;
           
           case 1 : 
-            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\controllerRotaryTable.sysj line: 56, column: 7
-              selectM_1.setPresent();//sysj\controllerRotaryTable.sysj line: 57, column: 5
+            if((Integer)(mode.getpreval() == null ? null : ((Integer)mode.getpreval())) == 1){//sysj\controllerRotaryTable.sysj line: 52, column: 7
+              selectM_1.setPresent();//sysj\controllerRotaryTable.sysj line: 53, column: 5
               currsigs.addElement(selectM_1);
               active[7]=1;
               ends[7]=1;
               tdone[7]=1;
             }
             else {
-              selectA_1.setPresent();//sysj\controllerRotaryTable.sysj line: 60, column: 5
+              selectA_1.setPresent();//sysj\controllerRotaryTable.sysj line: 56, column: 5
               currsigs.addElement(selectA_1);
               active[7]=1;
               ends[7]=1;
@@ -106,19 +106,17 @@ public class ControllerRotaryTable extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S9649){
+        switch(S9677){
           case 0 : 
-            if(startTimer_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 44, column: 10
-              System.out.println("startTimer");//sysj\controllerRotaryTable.sysj line: 45, column: 4
-              S9649=1;
-              __start_thread_6 = com.systemj.Timer.getMs();//sysj\controllerRotaryTable.sysj line: 43, column: 3
-              if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\controllerRotaryTable.sysj line: 43, column: 3
+            if(startTimer_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 42, column: 10
+              S9677=1;
+              __start_thread_6 = com.systemj.Timer.getMs();//sysj\controllerRotaryTable.sysj line: 41, column: 3
+              if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\controllerRotaryTable.sysj line: 41, column: 3
                 ends[6]=2;
-                ;//sysj\controllerRotaryTable.sysj line: 43, column: 3
-                stopTimer_1.setPresent();//sysj\controllerRotaryTable.sysj line: 47, column: 4
+                ;//sysj\controllerRotaryTable.sysj line: 41, column: 3
+                stopTimer_1.setPresent();//sysj\controllerRotaryTable.sysj line: 44, column: 4
                 currsigs.addElement(stopTimer_1);
-                System.out.println("stopTimer");//sysj\controllerRotaryTable.sysj line: 48, column: 4
-                S9649=2;
+                S9677=2;
                 active[6]=1;
                 ends[6]=1;
                 tdone[6]=1;
@@ -137,13 +135,12 @@ public class ControllerRotaryTable extends ClockDomain{
             break;
           
           case 1 : 
-            if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\controllerRotaryTable.sysj line: 43, column: 3
+            if(com.systemj.Timer.getMs() - __start_thread_6 >= (0.5) * 1000){//sysj\controllerRotaryTable.sysj line: 41, column: 3
               ends[6]=2;
-              ;//sysj\controllerRotaryTable.sysj line: 43, column: 3
-              stopTimer_1.setPresent();//sysj\controllerRotaryTable.sysj line: 47, column: 4
+              ;//sysj\controllerRotaryTable.sysj line: 41, column: 3
+              stopTimer_1.setPresent();//sysj\controllerRotaryTable.sysj line: 44, column: 4
               currsigs.addElement(stopTimer_1);
-              System.out.println("stopTimer");//sysj\controllerRotaryTable.sysj line: 48, column: 4
-              S9649=2;
+              S9677=2;
               active[6]=1;
               ends[6]=1;
               tdone[6]=1;
@@ -156,8 +153,8 @@ public class ControllerRotaryTable extends ClockDomain{
             break;
           
           case 2 : 
-            S9649=2;
-            S9649=0;
+            S9677=2;
+            S9677=0;
             active[6]=1;
             ends[6]=1;
             tdone[6]=1;
@@ -170,7 +167,7 @@ public class ControllerRotaryTable extends ClockDomain{
   }
 
   public void thread9769(int [] tdone, int [] ends){
-        switch(S9371){
+        switch(S9370){
       case 0 : 
         active[5]=0;
         ends[5]=0;
@@ -178,14 +175,14 @@ public class ControllerRotaryTable extends ClockDomain{
         break;
       
       case 1 : 
-        if((stopTimer_1.getprestatus() && tableAlignedWithSensor.getprestatus())){//sysj\controllerRotaryTable.sysj line: 32, column: 23
-          S9371=0;
+        if((stopTimer_1.getprestatus() && tableAlignedWithSensor.getprestatus())){//sysj\controllerRotaryTable.sysj line: 30, column: 23
+          S9370=0;
           active[5]=0;
           ends[5]=0;
           tdone[5]=1;
         }
         else {
-          rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 34, column: 7
+          rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 32, column: 7
           currsigs.addElement(rotaryTableTrigger);
           active[5]=1;
           ends[5]=1;
@@ -197,7 +194,7 @@ public class ControllerRotaryTable extends ClockDomain{
   }
 
   public void thread9768(int [] tdone, int [] ends){
-        switch(S9361){
+        switch(S9360){
       case 0 : 
         active[4]=0;
         ends[4]=0;
@@ -205,7 +202,7 @@ public class ControllerRotaryTable extends ClockDomain{
         break;
       
       case 1 : 
-        S9361=0;
+        S9360=0;
         active[4]=0;
         ends[4]=0;
         tdone[4]=1;
@@ -215,16 +212,16 @@ public class ControllerRotaryTable extends ClockDomain{
   }
 
   public void thread9766(int [] tdone, int [] ends){
-        S9371=1;
-    if((stopTimer_1.getprestatus() && tableAlignedWithSensor.getprestatus())){//sysj\controllerRotaryTable.sysj line: 32, column: 23
-      S9371=0;
+        S9370=1;
+    if((stopTimer_1.getprestatus() && tableAlignedWithSensor.getprestatus())){//sysj\controllerRotaryTable.sysj line: 30, column: 23
+      S9370=0;
       active[5]=0;
       ends[5]=0;
       tdone[5]=1;
     }
     else {
-      System.out.println("rotaryTableTrigger");//sysj\controllerRotaryTable.sysj line: 33, column: 7
-      rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 34, column: 7
+      System.out.println("rotaryTableTrigger");//sysj\controllerRotaryTable.sysj line: 31, column: 7
+      rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 32, column: 7
       currsigs.addElement(rotaryTableTrigger);
       active[5]=1;
       ends[5]=1;
@@ -233,8 +230,8 @@ public class ControllerRotaryTable extends ClockDomain{
   }
 
   public void thread9765(int [] tdone, int [] ends){
-        S9361=1;
-    startTimer_1.setPresent();//sysj\controllerRotaryTable.sysj line: 29, column: 7
+        S9360=1;
+    startTimer_1.setPresent();//sysj\controllerRotaryTable.sysj line: 27, column: 7
     currsigs.addElement(startTimer_1);
     active[4]=1;
     ends[4]=1;
@@ -250,12 +247,11 @@ public class ControllerRotaryTable extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S9357){
+        switch(S9413){
           case 0 : 
-            if(selectA_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 23, column: 9
-              System.out.println((mode.getpreval() == null ? null : ((Integer)mode.getpreval())));//sysj\controllerRotaryTable.sysj line: 24, column: 3
-              S9357=1;
-              S9359=0;
+            if(selectA_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 22, column: 9
+              S9413=1;
+              S9358=0;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
@@ -268,25 +264,25 @@ public class ControllerRotaryTable extends ClockDomain{
             break;
           
           case 1 : 
-            if(selectM_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 25, column: 10
-              S9357=0;
+            if(selectM_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 23, column: 10
+              S9413=0;
               active[3]=1;
               ends[3]=1;
               tdone[3]=1;
             }
             else {
-              if(capOnBottleAtPos1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 26, column: 11
-                S9357=0;
+              if(capOnBottleAtPos1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 24, column: 11
+                S9413=0;
                 active[3]=1;
                 ends[3]=1;
                 tdone[3]=1;
               }
               else {
-                switch(S9359){
+                switch(S9358){
                   case 0 : 
-                    if(tableAlignedWithSensor.getprestatus()){//sysj\controllerRotaryTable.sysj line: 27, column: 12
-                      System.out.println("tableAlignedWithSensor");//sysj\controllerRotaryTable.sysj line: 28, column: 6
-                      S9359=1;
+                    if(tableAlignedWithSensor.getprestatus()){//sysj\controllerRotaryTable.sysj line: 25, column: 12
+                      System.out.println("tableAlignedWithSensor");//sysj\controllerRotaryTable.sysj line: 26, column: 6
+                      S9358=1;
                       thread9765(tdone,ends);
                       thread9766(tdone,ends);
                       int biggest9767 = 0;
@@ -326,8 +322,8 @@ public class ControllerRotaryTable extends ClockDomain{
                     }
                     //FINXME code
                     if(biggest9770 == 0){
-                      System.out.println("capOnBottleAtPos1");//sysj\controllerRotaryTable.sysj line: 36, column: 5
-                      S9357=0;
+                      System.out.println("capOnBottleAtPos1");//sysj\controllerRotaryTable.sysj line: 34, column: 5
+                      S9413=0;
                       active[3]=1;
                       ends[3]=1;
                       tdone[3]=1;
@@ -354,22 +350,21 @@ public class ControllerRotaryTable extends ClockDomain{
         break;
       
       case 1 : 
-        switch(S9307){
+        switch(S9321){
           case 0 : 
             if(selectM_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 13, column: 10
-              System.out.println((mode.getpreval() == null ? null : ((Integer)mode.getpreval())));//sysj\controllerRotaryTable.sysj line: 14, column: 4
-              S9307=1;
-              S9309=0;
-              if(rotaryTableTriggerM.getprestatus()){//sysj\controllerRotaryTable.sysj line: 16, column: 26
-                rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 16, column: 47
+              S9321=1;
+              S9308=0;
+              if(rotaryTableTriggerM.getprestatus()){//sysj\controllerRotaryTable.sysj line: 15, column: 26
+                rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 15, column: 47
                 currsigs.addElement(rotaryTableTrigger);
-                S9309=1;
+                S9308=1;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
               }
               else {
-                S9309=1;
+                S9308=1;
                 active[2]=1;
                 ends[2]=1;
                 tdone[2]=1;
@@ -383,26 +378,26 @@ public class ControllerRotaryTable extends ClockDomain{
             break;
           
           case 1 : 
-            if(selectA_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 15, column: 10
-              S9307=0;
+            if(selectA_1.getprestatus()){//sysj\controllerRotaryTable.sysj line: 14, column: 10
+              S9321=0;
               active[2]=1;
               ends[2]=1;
               tdone[2]=1;
             }
             else {
-              switch(S9309){
+              switch(S9308){
                 case 0 : 
-                  S9309=0;
-                  if(rotaryTableTriggerM.getprestatus()){//sysj\controllerRotaryTable.sysj line: 16, column: 26
-                    rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 16, column: 47
+                  S9308=0;
+                  if(rotaryTableTriggerM.getprestatus()){//sysj\controllerRotaryTable.sysj line: 15, column: 26
+                    rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 15, column: 47
                     currsigs.addElement(rotaryTableTrigger);
-                    S9309=1;
+                    S9308=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S9309=1;
+                    S9308=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -410,18 +405,18 @@ public class ControllerRotaryTable extends ClockDomain{
                   break;
                 
                 case 1 : 
-                  S9309=1;
-                  S9309=0;
-                  if(rotaryTableTriggerM.getprestatus()){//sysj\controllerRotaryTable.sysj line: 16, column: 26
-                    rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 16, column: 47
+                  S9308=1;
+                  S9308=0;
+                  if(rotaryTableTriggerM.getprestatus()){//sysj\controllerRotaryTable.sysj line: 15, column: 26
+                    rotaryTableTrigger.setPresent();//sysj\controllerRotaryTable.sysj line: 15, column: 47
                     currsigs.addElement(rotaryTableTrigger);
-                    S9309=1;
+                    S9308=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
                   }
                   else {
-                    S9309=1;
+                    S9308=1;
                     active[2]=1;
                     ends[2]=1;
                     tdone[2]=1;
@@ -448,7 +443,7 @@ public class ControllerRotaryTable extends ClockDomain{
 
   public void thread9760(int [] tdone, int [] ends){
         S9739=1;
-    S9649=0;
+    S9677=0;
     active[6]=1;
     ends[6]=1;
     tdone[6]=1;
@@ -456,7 +451,7 @@ public class ControllerRotaryTable extends ClockDomain{
 
   public void thread9759(int [] tdone, int [] ends){
         S9647=1;
-    S9357=0;
+    S9413=0;
     active[3]=1;
     ends[3]=1;
     tdone[3]=1;
@@ -464,7 +459,7 @@ public class ControllerRotaryTable extends ClockDomain{
 
   public void thread9758(int [] tdone, int [] ends){
         S9355=1;
-    S9307=0;
+    S9321=0;
     active[2]=1;
     ends[2]=1;
     tdone[2]=1;

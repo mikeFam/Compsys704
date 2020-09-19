@@ -734,7 +734,7 @@ public class PlantConveyor extends ClockDomain{
 
   public void thread14914(int [] tdone, int [] ends){
         S13591=1;
-    bottlecount_thread_5 = 100;//sysj\plantConveyor.sysj line: 88, column: 3
+    bottlecount_thread_5 = 5;//sysj\plantConveyor.sysj line: 88, column: 3
     S13534=0;
     if(bottleDec_1.getprestatus()){//sysj\plantConveyor.sysj line: 90, column: 12
       if(bottlecount_thread_5 > 0) {//sysj\plantConveyor.sysj line: 91, column: 5

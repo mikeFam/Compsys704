@@ -9,29 +9,26 @@ public class RotaryVizWorker extends Worker{
 	public void setSignal(boolean status) {
 //		System.out.println(signame+"  "+status);
 		switch(signame){
+		case "tableAlignedWithSensorE":
+			States.ALIGNED = status;
+			break;
+		case "bottleAtPos5E":
+			States.BOTTLE_ROTARY_5 = status;
+			break;
+		case "capOnBottleAtPos1E":
+			States.CAP_AT_1 = status;
+			break;
+		case "bottleAtPos1E":
+			States.BOTTLE_ROTARY_1 = status;
+			break;
 		case "bottleAtPos2E":
-			States.BOTTLE_AT_POS_2 = status;
+			States.BOTTLE_ROTARY_2 = status;
 			break;
-		case "dosUnitEvacE":
-			States.VALVE_EXTEND = status;
+		case "bottleAtPos3E":
+			States.BOTTLE_ROTARY_3 = status;
 			break;
-		case "dosUnitFilledE":
-			States.VALVE_RETRACT = status;
-			break;
-		case "injectorOnE":
-			States.INJECTOR_ON = status;
-			break;
-		case "injectorOffE":
-			States.INJECTOR_OFF = status;
-			break;
-		case "inletOnE":
-			States.INLET_ON = status;
-			break;
-		case "inletOffE":
-			States.INLET_OFF = status;
-			break;
-		case "jobDoneE":
-			States.BOTTLE_FILLED = status;
+		case "bottleAtPos4E":
+			States.BOTTLE_ROTARY_4 = status;
 			break;
 		default: 
 			System.err.println("Wrong sig name : "+signame);
@@ -40,7 +37,7 @@ public class RotaryVizWorker extends Worker{
 	}
 	
 	
-	static final List<String> signames = Arrays.asList("bottleAtPos2E","dosUnitEvacE","dosUnitFilledE","injectorOnE","injectorOffE","inletOnE","inletOffE","jobDoneE");
+	static final List<String> signames = Arrays.asList("tableAlignedWithSensorE","bottleAtPos5E","capOnBottleAtPos1E","bottleAtPos1E","bottleAtPos2E","bottleAtPos3E","bottleAtPos4E");
 	
 	@Override
 	public boolean hasSignal(String sn) {

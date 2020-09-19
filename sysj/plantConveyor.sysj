@@ -85,7 +85,7 @@ PlantConveyor(
 	}
 	||
 	{
-		int bottlecount = 100;
+		int bottlecount = 5;
 		while(true){
 			present(bottleDec){
 				if(bottlecount > 0)
