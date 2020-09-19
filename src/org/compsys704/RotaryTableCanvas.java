@@ -11,20 +11,22 @@ import javax.swing.JPanel;
 
 public class RotaryTableCanvas extends JPanel {
 	BufferedImage rotaryTable1;
-	BufferedImage rotaryTable2;
-	BufferedImage rotaryTable3;
-	BufferedImage rotaryTable4;
-	BufferedImage rotaryTable5;
-	BufferedImage rotaryTable6;
+	BufferedImage bottleAt1;
+	BufferedImage bottleAt2;
+	BufferedImage bottleAt3;
+	BufferedImage bottleAt4;
+	BufferedImage bottleAt5;
+	BufferedImage capAt1;
 	
 	public RotaryTableCanvas(){
 		try {
 			rotaryTable1 = ImageIO.read(new File("res/rotaryTable.png"));
-			rotaryTable2 = ImageIO.read(new File("res/rotaryTable2.png"));
-			rotaryTable3 = ImageIO.read(new File("res/rotaryTable3.png"));
-			rotaryTable4 = ImageIO.read(new File("res/rotaryTable4.png"));
-			rotaryTable5 = ImageIO.read(new File("res/rotaryTable5.png"));
-			rotaryTable6 = ImageIO.read(new File("res/rotaryTable6.png"));
+			capAt1 = ImageIO.read(new File("res/rotaryTableCap.png"));
+			bottleAt1 = ImageIO.read(new File("res/BottleAt1.png"));
+			bottleAt2 = ImageIO.read(new File("res/BottleAt2.png"));
+			bottleAt3 = ImageIO.read(new File("res/BottleAt3.png"));
+			bottleAt4 = ImageIO.read(new File("res/BottleAt4.png"));
+			bottleAt5 = ImageIO.read(new File("res/BottleAt5.png"));
 		} catch (IOException e) {
 			e.printStackTrace();
 			System.exit(1);;
@@ -34,7 +36,7 @@ public class RotaryTableCanvas extends JPanel {
 	@Override
 	protected void paintComponent(Graphics g){
 		super.paintComponent(g);
-		
+		g.drawImage(rotaryTable1, 0, 0, null);
 		
 	}
 }

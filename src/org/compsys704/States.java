@@ -23,7 +23,6 @@ public class States {
 	public static volatile boolean BOTTLE_ROTARY_3 = false;
 	public static volatile boolean BOTTLE_ROTARY_4 = false;
 	public static volatile boolean BOTTLE_ROTARY_5 = false;
-	public static volatile boolean BOTTLE_ROTARY_6 = false;
 	
 	//States for Capper
 	public static volatile boolean BOTTLE_AT_CAPPER = true;
