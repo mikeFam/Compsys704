@@ -35,94 +35,63 @@ PlantRotaryTable(
 	||
 	{//AlignedSensor
 		while(true){
-			await(rotaryTableTrigger);
 			await(alignedSensor);
-			await(enable);
-			abort (!alignedSensor && !enable){
-				System.out.println("tableAlignedWithSensor");
+			abort (immediate (!alignedSensor && enable)){
 				sustain tableAlignedWithSensor;
 			}
-			System.out.println("Not-tableAlignedWithSensor");
+			await(!enable);
 		}
 	}
 	||
 	{//capAtPos1
 		while(true){
-			await(rotaryTableTrigger);
 			await(capAtPos1);
-			await(enable);
-			abort (!capAtPos1 && !enable){
-				System.out.println("capOnBottleAtPos1");
+			abort (immediate (!capAtPos1 && enable)){
 				sustain capOnBottleAtPos1;
 			}
-			System.out.println("Not-capOnBottleAtPos1");
+			await(!enable);
 		}
 	}
 	||
 	{//Bottle
 		while(true){
-			await(rotaryTableTrigger);
 			await(bottlePos5);
-			await(enable);
-			abort (!bottlePos5 && !enable){
-				System.out.println("bottleAtPos5");
+			abort (immediate (!bottlePos5 && enable)){
 				sustain bottleAtPos5;
 			}
-			System.out.println("Not-bottleAtPos5");
+			await(!enable);
 		}
 	}
 	||
 	{
 		while(true){
 		int data = #bottlePos;
-			{if((Integer)#bottlePos == 0){
+			if((Integer)#bottlePos == 0){
 				abort(bottleAt2){
-					System.out.println("bottleAt1");
 					sustain bottleAtPos1;
 				}
 			}
-			pause;
-			}
-			||
-			{
-			if((Integer)#bottlePos == 1){
+			else if((Integer)#bottlePos == 1){
 				abort(bottleAt3){
-					System.out.println("bottleAtPos2");
 					sustain bottleAtPos2;
 				}
 			}
-			pause;
-			}
-			||
-			{
-			if((Integer)#bottlePos == 2){
+			else if((Integer)#bottlePos == 2){
 				abort(bottleAt4){
-					System.out.println("bottleLeftPos3");
 					sustain bottleAtPos3;
 				}
 			}
-			pause;
-			}
-			||
-			{
-			if((Integer)#bottlePos == 3){
+			else if((Integer)#bottlePos == 3){
 				abort(bottleAt5){
-					System.out.println("bottleLeftPos4");
 					sustain bottleAtPos4;
 				}
 			}
-			pause;
-			}	
-			||
-			{
-			if((Integer)#bottlePos == 4){
+			else if((Integer)#bottlePos == 4){
 				abort(bottleAt1){
-					System.out.println("bottleLeftPos5");
 					sustain bottleAtPos5;
 				}
 			}
-			pause;
-			}		
+			pause;	
 		}
 	}
 	||
@@ -139,37 +108,29 @@ PlantRotaryTable(
 			// At Load
 			abort(empty){
 				while(true){
-					{{emit bottlePos(0);
+					emit bottlePos(0);
 					emit bottleAt1;
-					}
-					||
-					{await(rotaryOn && bottleAt1 && enable);
+					await(rotaryOn && bottleAtPos1 && enable);
 					// At pos 2
 					emit bottlePos(1);
 					emit bottleAt2;
 					await (!enable);
-					}
-					||
-					{await(rotaryOn && bottleAt2 && enable);
+					await(rotaryOn && bottleAtPos2 && enable);
 					// At pos 3
 					emit bottlePos(2);
 					emit bottleAt3;
 					await (!enable);
-					}
-					||
-					{await(rotaryOn && bottleAt3 && enable);
+					await(rotaryOn && bottleAtPos3 && enable);
 					// At pos 4
 					emit bottlePos(3);
 					emit bottleAt4;
 					await (!enable);
-					}
-					||
-					{await(rotaryOn && bottleAt4 && enable);
+					await(rotaryOn && bottleAtPos4 && enable);
 					// At pos 5
 					emit bottlePos(4);
+					pause;
 					emit bottleAt5;
 					await (!enable);
-					}}
 					emit bottleDec;
 				}
 			}

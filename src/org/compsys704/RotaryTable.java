@@ -26,8 +26,11 @@ public class RotaryTable extends JFrame {
 		panel.setBackground(Color.WHITE);
 		JButton enable = new JButton("enable");
 		enable.addActionListener(new SignalClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.ENABLE_SIGNAL));
+		JButton refill = new JButton("refill");
+		refill.addActionListener(new SignalClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.REFILL_SIGNAL));
 		JPanel ss = new JPanel();
 		ss.add(enable);
+		ss.add(refill);
 		this.setLayout(new GridBagLayout());
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
@@ -60,16 +63,19 @@ public class RotaryTable extends JFrame {
 		// Checkboxes
 		JCheckBox pe = new JCheckBox("sensor alligned");
 		pe.setEnabled(false);
-		pe.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.ALIGNEDSENSOR_SIGNAL));
+		pe.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.ALIGNEDSENSOR_SIGNAL));
 		JCheckBox vo = new JCheckBox("capped bottle at pos 1");
 		vo.setEnabled(false);
-		vo.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.CAP_AT_POS_1_SIGNAL));
+		vo.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.CAP_AT_POS_1_SIGNAL));
 		JCheckBox as = new JCheckBox("bottle at pos 5");
 		as.setEnabled(false);
-		as.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.BOTTLE_POS_5_SIGNAL));
+		as.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.BOTTLE_POS_5_SIGNAL));
 		JCheckBox ad = new JCheckBox("rotary on");
 		ad.setEnabled(false);
 		ad.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.SIGNAL_ROTARY_ON));
+		JCheckBox se = new JCheckBox("sensor alligned");
+		se.setEnabled(false);
+		se.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.ALIGNEDSENSOR_SIGNAL));
 
 		JPanel pan2 = new JPanel(new GridLayout(2, 2));
 		pan2.add(pe);

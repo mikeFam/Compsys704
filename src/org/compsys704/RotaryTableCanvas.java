@@ -41,7 +41,7 @@ public class RotaryTableCanvas extends JPanel {
 		if (States.CAP_AT_1) {
 			g.drawImage(capAt1, 0 ,0, null);
 		}
-		
+		else {
 		if(States.BOTTLE_ROTARY_1 && States.ALIGNED) {
 			g.drawImage(bottleAt1, 0, 0, null);
 		}
@@ -60,6 +60,7 @@ public class RotaryTableCanvas extends JPanel {
 		
 		if(States.BOTTLE_ROTARY_5 && States.ALIGNED) {
 			g.drawImage(bottleAt5, 0, 0, null);
+		}
 		}
 	}
 }
