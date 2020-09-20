@@ -1,7 +1,7 @@
 PlantConveyor(
 		input signal motConveyorOnOff;
 		input signal enable, refill;
-		output signal bottleAtLoad, bottleAtPos1,bottleLeftPos5;
+		output signal bottleAtLoad, bottleAtPos1, bottleLeftPos5;
 		output signal bottleAtLoadE, bottleAtPos1E, bottleLeftPos5E;
 		)
 ->

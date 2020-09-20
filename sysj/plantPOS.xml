@@ -1,13 +1,12 @@
 <System xmlns="http://systemjtechnology.com">
-	<SubSystem Name="SS6" Local="true">
-		<ClockDomain Name="PlantFillerCD" Class="PlantFiller">
+	<SubSystem Name="SS11" Local="true">
+		<ClockDomain Name="PlantPOSCD" Class="PlantPOS">
 			<iSignal Name="valveInjectorOnOff" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="valveInletOnOff" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="dosUnitValveRetract" 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="dosUnitValveExtend" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="jobDone" 														Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			<iSignal Name="enable"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="enableFiller"       												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
 			
 			<oSignal Name="bottleAtPos2" 		To="ControllerFillerCD.bottleAtPos2" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
 			<oSignal Name="dosUnitEvac"  		To="ControllerFillerCD.dosUnitEvac"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />

@@ -11,8 +11,10 @@
 			<oSignal Name="valveInletOnOff" 	To="PlantFillerCD.valveInletOnOff" 	  	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="dosUnitValveRetract" To="PlantFillerCD.dosUnitValveRetract" 	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
 			<oSignal Name="dosUnitValveExtend" 	To="PlantFillerCD.dosUnitValveExtend" 	  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="jobDone" 			To="PlantFillerCD.jobDone" 	  			  Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-		
+			
+			<oSignal Name="jobDone" 			To="PlantFillerCD.jobDone" 	  			 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="jobDoneM" 			 To="ControllerMainCD.jobFillerDone" 	 Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			
 			<iSignal Name="mode"  	 			 										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="valveInjectorOnOffM"  										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />
 			<iSignal Name="valveInletOnOffM"  	 										  Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10000" />

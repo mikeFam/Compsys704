@@ -12,6 +12,8 @@ public class CapperVizWorker extends Worker{
 		case "gripperZAxisLiftedE":
 			States.GRIPPER_RETRACTED = status;
 			break;
+		case "bottleAtPos4E":
+			break;
 		case "gripperZAxisLoweredE":
 			States.GRIPPER_EXTENDED = status;
 			break;

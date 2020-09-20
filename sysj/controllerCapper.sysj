@@ -1,6 +1,6 @@
 ControllerCapper(
 		input signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, capGrip, capNotGrip;
-		output signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+		output signal jobDone, cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
 		input Integer signal mode;
 		input signal cylPos5ZaxisExtendM, gripperTurnRetractM, gripperTurnExtendM, capGripperPos5ExtendM, cylClampBottleExtendM;
 		)
@@ -27,43 +27,38 @@ ControllerCapper(
 	{//Auto
 		while (true){
 			await(selectA);
-			signal jobDone;
-			System.out.println("Auto Mode");
 			abort(selectM){
 				await(bottleAtPos4);
-				{abort (immediate (gripperZAxisLifted && jobDone)) {
-					System.out.println("Bottle Clamped");
-					sustain cylClampBottleExtend;
+				abort(!bottleAtPos4){
+					{
+					abort (immediate (gripperZAxisLifted && jobDone)){
+						sustain cylClampBottleExtend;
+						}
 					}
-				System.out.println("Unclamp the bottle");
-				}
-				||
-				{abort(gripperZAxisLowered && gripperTurnFinalPos) {
-					System.out.println("Gripper lowering");
-					{sustain cylPos5ZaxisExtend;}
 					||
-					{await (gripperZAxisLowered);
-						{System.out.println("Cap gripping");
-						sustain capGripperPos5Extend;}
+					{
+					abort(immediate (gripperZAxisLowered && gripperTurnFinalPos)){
+						{
+						sustain cylPos5ZaxisExtend;}
 						||
-						{await (capGrip);
-							System.out.println("CapGrip");
-							abort (gripperTurnFinalPos){
-								System.out.println("Cap turned");
+						{
+						await (gripperZAxisLowered);
+						{sustain capGripperPos5Extend;}
+						||
+						{
+						await (capGrip);
+							abort (immediate (gripperTurnFinalPos)){
 								sustain gripperTurnExtend;
 							}
 						}
 					}
-				}
-				System.out.println("Release/ungrip cap");
-				abort (gripperTurnHomePos) {
-					System.out.println("Gripper untwisting");
-					sustain gripperTurnRetract;
-				}
-				System.out.println("Gripper untwisted");
-				await (gripperZAxisLifted);
-				System.out.println("Gripper lifted");
-				emit jobDone;
+					}
+					abort (immediate (gripperTurnHomePos)){
+						sustain gripperTurnRetract;
+					}
+					await (gripperZAxisLifted);
+					sustain jobDone;
+					}
 				}
 			}	
 		}

@@ -1,8 +1,9 @@
  PlantCapLoader(
 		input signal pusherExtend,vacOn,armSource,armDest;
 		input signal enable,refill;
-		output signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty;
-		output signal pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
+		output signal bottleAtPos3, pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty;
+		output signal bottleAtPos3E, pusherRetractedE,pusherExtendedE,WPgrippedE,armAtSourceE,armAtDestE,emptyE;
+		input signal enableCapLoader;
 		)
 ->
 {
@@ -26,6 +27,16 @@
 				sustain armAtSource;
 			}
 			await(!enable);
+		}
+	}
+	||
+	{//Bottle
+		while(true){
+			await (enableCapLoader);
+			abort (immediate (!enableCapLoader)){
+				System.out.println("enableCapLoader");
+				sustain bottleAtPos3;
+			}
 		}
 	}
 	||

@@ -1,6 +1,6 @@
 ControllerCapLoader(
-		input signal pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request;
-		output signal pusherExtend,vacOn,armSource,armDest;
+		input signal bottleAtPos3, pusherRetracted,pusherExtended,WPgripped,armAtSource,armAtDest,empty,request;
+		output signal pusherExtend,vacOn,armSource,armDest, jobDone;
 		input Integer signal mode;
 		input signal pusherExtendM,vacOnM,armSourceM,armDestM;
 		)
@@ -27,21 +27,28 @@ ControllerCapLoader(
 		while(true){
 			await(selectA);
 			abort(selectM){
-				await(request && !empty);
-				abort(pusherExtended){
-					sustain pusherExtend;
-				}
-				pause;
-				await(pusherRetracted);
-				abort(armAtSource){
-					sustain armSource;
-				}
-				pause;
-				abort(armAtDest){
-					{sustain vacOn;}
-					||
-					{await (WPgripped);
-					sustain armDest;}
+				await(bottleAtPos3);
+				System.out.println("Hello1");
+				abort(immediate (!bottleAtPos3)){
+					await(request && !empty);
+					System.out.println("Hello2");
+					abort(pusherExtended){
+						sustain pusherExtend;
+					}
+					pause;
+					await(pusherRetracted);
+					abort(armAtSource){
+						sustain armSource;
+					}
+					pause;
+					abort(armAtDest){
+						{sustain vacOn;}
+						||
+						{await (WPgripped);
+						sustain armDest;}
+					}
+					System.out.println("Hello4");
+					sustain jobDone;
 				}
 			}
 		}

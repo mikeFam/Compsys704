@@ -3,6 +3,7 @@ PlantRotaryTable(
 		input signal enable, refill, alignedSensor, capAtPos1, bottlePos5;
 		output signal tableAlignedWithSensor, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, capOnBottleAtPos1;
 		output signal tableAlignedWithSensorE, bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, capOnBottleAtPos1E;
+		output signal bottleAtPos1M, bottleAtPos2M, bottleAtPos3M, bottleAtPos4M, bottleAtPos5M;
 		)
 ->
 {
@@ -170,5 +171,17 @@ PlantRotaryTable(
 		{while(true){present(bottleAtPos4){emit bottleAtPos4E;} pause;}}
 		||
 		{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
+	}
+	||
+	{// To Main
+		{while(true){present(bottleAtPos1){emit bottleAtPos1M;} pause;}}
+		||
+		{while(true){present(bottleAtPos2){emit bottleAtPos2M;} pause;}}
+		||
+		{while(true){present(bottleAtPos3){emit bottleAtPos3M;} pause;}}
+		||
+		{while(true){present(bottleAtPos4){emit bottleAtPos4M;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5M;} pause;}}
 	}
 }

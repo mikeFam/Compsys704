@@ -1,9 +1,8 @@
-PlantFiller(
+PlantPOS(
 		input signal valveInjectorOnOff, valveInletOnOff, dosUnitValveRetract, dosUnitValveExtend, jobDone;
 		input signal enable;
 		output signal bottleAtPos2, dosUnitEvac, dosUnitFilled, injectorOn, injectorOff, inletOn, inletOff, jobDoneN;
 		output signal bottleAtPos2E, dosUnitEvacE, dosUnitFilledE, injectorOnE, injectorOffE, inletOnE, inletOffE, jobDoneE;
-		input signal enableFiller;
 		)
 ->
 {
@@ -29,24 +28,14 @@ PlantFiller(
 	||
 	{//Bottle
 		while(true){
-			await (enableFiller);
-			abort (immediate (!enableFiller && enable)){
-				System.out.println("enableFiller");
+			abort (immediate (jobDone && enable)){
 				sustain bottleAtPos2;
 			}
-		await(!enable);	
-		}
-	}
-	||
-	{//Job Done
-		while(true){
-			await(jobDone);
-			System.out.println("jobDone2");
+			await(!enable);
 			abort (immediate (!jobDone && enable)){
-				System.out.println("jobDone3");
-				{sustain jobDoneN;}
+				sustain jobDoneN;
 			}
-		await(!enable);	
+			await(!enable);	
 		}
 	}
 	||

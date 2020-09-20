@@ -1,8 +1,9 @@
 PlantCapper(
-		input signal cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
+		input signal jobDone, cylPos5ZaxisExtend, gripperTurnRetract, gripperTurnExtend, capGripperPos5Extend, cylClampBottleExtend;
 		input signal enable;
 		output signal bottleAtPos4, gripperZAxisLowered, gripperZAxisLifted, gripperTurnHomePos, gripperTurnFinalPos, clampRetracted, clampExtended, capGrip, capNotGrip;
 		output signal bottleAtPos4E, gripperZAxisLoweredE, gripperZAxisLiftedE, gripperTurnHomePosE, gripperTurnFinalPosE, clampRetractedE, clampExtendedE, capGripE, capNotGripE;
+		input signal enableCapper;
 		)
 ->
 {
@@ -70,7 +71,12 @@ PlantCapper(
 	||
 	{//Bottle
 		while(true){
-			sustain bottleAtPos4;
+			await (enableCapper);
+			abort (immediate (!enableCapper && enable)){
+				System.out.println("enableCapper");
+				sustain bottleAtPos4;
+			}
+		await(!enable);	
 		}
 	}
 	||
