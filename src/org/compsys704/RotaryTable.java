@@ -62,7 +62,7 @@ public class RotaryTable extends JFrame {
 
 		// Checkboxes
 		JCheckBox pe = new JCheckBox("sensor alligned");
-		pe.setEnabled(false);
+		pe.setEnabled(true);
 		pe.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.ALIGNEDSENSOR_SIGNAL));
 		JCheckBox vo = new JCheckBox("capped bottle at pos 1");
 		vo.setEnabled(false);
@@ -73,16 +73,14 @@ public class RotaryTable extends JFrame {
 		JCheckBox ad = new JCheckBox("rotary on");
 		ad.setEnabled(false);
 		ad.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_CONTROLLER, RotaryTablePorts.SIGNAL_ROTARY_ON));
-		JCheckBox se = new JCheckBox("sensor alligned");
-		se.setEnabled(false);
-		se.addItemListener(new SignalCheckBoxClient(RotaryTablePorts.PORT_LOADER_PLANT, RotaryTablePorts.ALIGNEDSENSOR_SIGNAL));
 
 		JPanel pan2 = new JPanel(new GridLayout(2, 2));
-		pan2.add(pe);
+		pan.add(pe);
 		pan2.add(vo);
 		pan2.add(as);
 		pan2.add(ad);
 		pan2.setBorder(BorderFactory.createTitledBorder("Manual control"));
+		src.setCheckBoxComponent(pan);
 		src.setCheckBoxComponent(pan2);
 
 		JPanel pan3 = new JPanel(new GridLayout(0, 2));
