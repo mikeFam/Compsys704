@@ -4,6 +4,7 @@ PlantRotaryTable(
 		output signal tableAlignedWithSensor, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, capOnBottleAtPos1;
 		output signal tableAlignedWithSensorE, bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, capOnBottleAtPos1E;
 		output signal bottleAtPos1M, bottleAtPos2M, bottleAtPos3M, bottleAtPos4M, bottleAtPos5M;
+		input signal enableRotaryTable;
 		)
 ->
 {
@@ -54,45 +55,43 @@ PlantRotaryTable(
 		}
 	}
 	||
-	{//Bottle
-		while(true){
-			await(bottlePos5);
-			abort (immediate (!bottlePos5 && enable)){
-				sustain bottleAtPos5;
-			}
-			await(!enable);
-		}
-	}
-	||
 	{
 		while(true){
 		int data = #bottlePos;
-			if((Integer)#bottlePos == 0){
-				abort(bottleAt2){
-					sustain bottleAtPos1;
+			await(enableRotaryTable);
+			abort(immediate (!enableRotaryTable)){
+				if((Integer)#bottlePos == 0){
+					abort(bottleAt2){
+						System.out.println("hi1");
+						sustain bottleAtPos1;
+					}
 				}
-			}
-			else if((Integer)#bottlePos == 1){
-				abort(bottleAt3){
-					sustain bottleAtPos2;
+				if((Integer)#bottlePos == 1){
+					abort(bottleAt3){
+						System.out.println("hi2");
+						sustain bottleAtPos2;
+					}
 				}
-			}
-			else if((Integer)#bottlePos == 2){
-				abort(bottleAt4){
-					sustain bottleAtPos3;
+				else if((Integer)#bottlePos == 2){
+					abort(bottleAt4){
+						System.out.println("hi3");
+						sustain bottleAtPos3;
+					}
 				}
-			}
-			else if((Integer)#bottlePos == 3){
-				abort(bottleAt5){
-					sustain bottleAtPos4;
+				else if((Integer)#bottlePos == 3){
+					abort(bottleAt5){
+						System.out.println("hi4");
+						sustain bottleAtPos4;
+					}
 				}
-			}
-			else if((Integer)#bottlePos == 4){
-				abort(bottleAt1){
-					sustain bottleAtPos5;
+				else if((Integer)#bottlePos == 4){
+					abort(bottleAt1){
+						System.out.println("hi5");
+						sustain bottleAtPos5;
+					}
 				}
+				pause;	
 			}
-			pause;	
 		}
 	}
 	||
@@ -111,26 +110,31 @@ PlantRotaryTable(
 				while(true){
 					emit bottlePos(0);
 					emit bottleAt1;
+					System.out.println("Hello1");
 					await(rotaryOn && bottleAtPos1 && enable);
 					// At pos 2
 					emit bottlePos(1);
 					emit bottleAt2;
+					System.out.println("Hello2");
 					await (!enable);
 					await(rotaryOn && bottleAtPos2 && enable);
 					// At pos 3
 					emit bottlePos(2);
 					emit bottleAt3;
+					System.out.println("Hello3");
 					await (!enable);
 					await(rotaryOn && bottleAtPos3 && enable);
 					// At pos 4
 					emit bottlePos(3);
 					emit bottleAt4;
+					System.out.println("Hello4");
 					await (!enable);
 					await(rotaryOn && bottleAtPos4 && enable);
 					// At pos 5
 					emit bottlePos(4);
 					pause;
 					emit bottleAt5;
+					System.out.println("Hello5");
 					await (!enable);
 					emit bottleDec;
 				}
