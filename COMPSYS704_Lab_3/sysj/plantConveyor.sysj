@@ -1,0 +1,111 @@
+PlantConveyor(
+		input signal motConveyorOnOff;
+		input signal enable, refill;
+		output signal bottleAtLoad, bottleAtPos1, bottleLeftPos5;
+		output signal bottleAtLoadE, bottleAtPos1E, bottleLeftPos5E;
+		)
+->
+{
+	class GUI implements java.lang.Runnable {
+		public void run() {
+			org.compsys704.Conveyor.main(null);
+		}
+	}
+	new Thread(new GUI()).start();
+
+	signal bottleDec, bottleAt1, bottleAtL, bottleAt5, motorOn, motorOff, empty;
+	int signal bottlePos;
+	emit bottlePos(0);
+	{//Conveyor
+		while(true){
+			abort (immediate (motConveyorOnOff && enable)){
+				System.out.println("motorOff");
+				sustain motorOff;
+			}
+			await(!enable);
+			abort(immediate (!motConveyorOnOff && enable)){
+				System.out.println("motorOn");
+				sustain motorOn;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{
+		while(true){
+		int data = #bottlePos;
+			if((Integer)#bottlePos == 0){
+				abort(bottleAt1){
+					System.out.println("bottleAtLoad");
+					sustain bottleAtLoad;
+				}
+			}
+			else if((Integer)#bottlePos == 1){
+				abort(bottleAt5){
+					System.out.println("bottleAtPos1");
+					sustain bottleAtPos1;
+				}
+			}
+			else if((Integer)#bottlePos == 2){
+				abort(bottleAtL){
+					System.out.println("bottleLeftPos5");
+					sustain bottleLeftPos5;
+				}
+			}
+			pause;
+		}
+	}
+	||
+	{
+		/*
+		 * Bottle positions
+		 * 0 = at Load
+		 * 1 = at Pos1
+		 * 2 = at Pos5
+		 */
+		while(true){
+			// At Load
+			abort(empty){
+				while(true){
+					emit bottlePos(0);
+					emit bottleAtL;
+					await(motorOn);
+					// At pos 1
+					emit bottlePos(1);
+					emit bottleAt1;
+					await (enable && motorOn);
+					emit bottlePos(2);
+					emit bottleAt5;
+					await (!enable);
+					emit bottleDec;
+				}
+			}
+			await(refill);
+		}
+	}
+	||
+	{
+		int bottlecount = 5;
+		while(true){
+			present(bottleDec){
+				if(bottlecount > 0)
+					bottlecount--;
+			}
+			present(refill){
+				bottlecount = 5;
+			}
+			if(bottlecount == 0)
+			emit empty;
+			pause;
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
+		||
+		{while(true){present(bottleLeftPos5){emit bottleLeftPos5E;} pause;}}
+		||
+		{while(true){present(bottleAtLoad){emit bottleAtLoadE;} pause;}}
+	}
+}
+
