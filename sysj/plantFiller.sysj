@@ -41,9 +41,7 @@ PlantFiller(
 	{//Job Done
 		while(true){
 			await(jobDone);
-			System.out.println("jobDone2");
 			abort (immediate (!jobDone && enable)){
-				System.out.println("jobDone3");
 				{sustain jobDoneN;}
 			}
 		await(!enable);	

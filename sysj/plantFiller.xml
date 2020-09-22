@@ -1,30 +1,30 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SS6" Local="true">
 		<ClockDomain Name="PlantFillerCD" Class="PlantFiller">
-			<iSignal Name="valveInjectorOnOff" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="valveInletOnOff" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="dosUnitValveRetract" 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="dosUnitValveExtend" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="jobDone" 														Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="enable"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
-			<iSignal Name="enableFiller"       												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="10001" />
+			<iSignal Name="valveInjectorOnOff" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
+			<iSignal Name="valveInletOnOff" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
+			<iSignal Name="dosUnitValveRetract" 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
+			<iSignal Name="dosUnitValveExtend" 												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
+			<iSignal Name="jobDone" 														Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
+			<iSignal Name="enable"       													Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
+			<iSignal Name="enableFiller"       												Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50301" />
 			
-			<oSignal Name="bottleAtPos2" 		To="ControllerFillerCD.bottleAtPos2" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="dosUnitEvac"  		To="ControllerFillerCD.dosUnitEvac"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="dosUnitFilled"  		To="ControllerFillerCD.dosUnitFilled"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="injectorOn"  		To="ControllerFillerCD.injectorOn"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="injectorOff"  		To="ControllerFillerCD.injectorOff"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="inletOn"  			To="ControllerFillerCD.inletOn"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
-			<oSignal Name="inletOff"  			To="ControllerFillerCD.inletOff"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10000" />
+			<oSignal Name="bottleAtPos2" 		To="ControllerFillerCD.bottleAtPos2" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
+			<oSignal Name="dosUnitEvac"  		To="ControllerFillerCD.dosUnitEvac"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
+			<oSignal Name="dosUnitFilled"  		To="ControllerFillerCD.dosUnitFilled"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
+			<oSignal Name="injectorOn"  		To="ControllerFillerCD.injectorOn"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
+			<oSignal Name="injectorOff"  		To="ControllerFillerCD.injectorOff"  		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
+			<oSignal Name="inletOn"  			To="ControllerFillerCD.inletOn"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
+			<oSignal Name="inletOff"  			To="ControllerFillerCD.inletOff"  			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50300" />
 		
-			<oSignal Name="bottleAtPos2E" 		To="UI.bottleAtPos2E" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="dosUnitEvacE" 		To="UI.dosUnitEvacE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="dosUnitFilledE" 		To="UI.dosUnitFilledE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />	
-			<oSignal Name="injectorOnE" 		To="UI.injectorOnE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="injectorOffE" 		To="UI.injectorOffE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />
-			<oSignal Name="inletOnE" 			To="UI.inletOnE" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />	
-			<oSignal Name="inletOffE" 			To="UI.inletOffE" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />	
-			<oSignal Name="jobDoneE" 			To="UI.jobDoneE" 						    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20000" />					
+			<oSignal Name="bottleAtPos2E" 		To="UI.bottleAtPos2E" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />
+			<oSignal Name="dosUnitEvacE" 		To="UI.dosUnitEvacE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />
+			<oSignal Name="dosUnitFilledE" 		To="UI.dosUnitFilledE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />	
+			<oSignal Name="injectorOnE" 		To="UI.injectorOnE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />
+			<oSignal Name="injectorOffE" 		To="UI.injectorOffE" 						Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />
+			<oSignal Name="inletOnE" 			To="UI.inletOnE" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />	
+			<oSignal Name="inletOffE" 			To="UI.inletOffE" 							Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />	
+			<oSignal Name="jobDoneE" 			To="UI.jobDoneE" 						    Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="20001" />					
 		</ClockDomain>
 	</SubSystem>
 </System>

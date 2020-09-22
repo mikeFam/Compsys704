@@ -21,6 +21,7 @@ ControllerConveyor(
 		while (true){
 		await(selectA);
 			abort(selectM){
+				await(bottleAtLoad);
 				abort(!bottleLeftPos5 && !bottleAtPos1){
 					sustain motConveyorOnOff;
 				}

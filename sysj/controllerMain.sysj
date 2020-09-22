@@ -1,24 +1,78 @@
 ControllerMain(
-		input signal jobDoneConveyor, jobDoneRotary, jobDoneFiller, jobDoneCapper, jobDoneCapLoader;
-		input signal enable;
-		input signal bottleAtLoad, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5;
-		output signal enableCapLoader, enableFiller, enableCapper, enableRotaryTable;
+		input signal jobDoneRotary, jobFillerDone, jobCapperDone, jobCapLoaderDone;
+		input signal enable, loadBotlle;
+		input signal bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5;
+		input Integer signal orderNumber;
+		output signal enableConveyor, enableCapLoader, enableFiller, enableCapper, enableRotaryTable, enableRotaryTableC;
+		output Integer signal bottleNumber, bottleNumber1;
 		)
 ->
 {	
 	{ // Rotary table reaction
 		while(true){
-			await(bottleAtPos1);
-			abort(immediate (!bottleAtPos1)){
-				System.out.println("bottleAtPos1");
-				sustain enableRotaryTable;
+			{
+				await(bottleAtPos1);
+				abort(immediate (!bottleAtPos1)){
+					System.out.println("bottleAtPos1");
+					{sustain enableRotaryTable;}
+					||
+					{sustain enableRotaryTableC;}
+				}
+			}
+			||
+			{
+				await(bottleAtPos2 && jobFillerDone);
+				abort(immediate (!bottleAtPos2)){;
+					{sustain enableRotaryTable;}
+					||
+					{sustain enableRotaryTableC;}
+				}
+			}
+			||
+			{
+				await(bottleAtPos3 && jobCapLoaderDone);
+				abort(immediate (!bottleAtPos3)){
+					{sustain enableRotaryTable;}
+					||
+					{sustain enableRotaryTableC;}
+				}
+			}
+			||
+			{
+				await(bottleAtPos4 && jobCapperDone);
+				abort(immediate (!bottleAtPos4)){
+					{sustain enableRotaryTable;}
+					||
+					{sustain enableRotaryTableC;}
+				}
+			}
+		}
+	}
+	||
+	{ // Order number reaction 
+		while(true){
+			await(orderNumber);
+			abort(!orderNumber){
+				{sustain bottleNumber(#orderNumber);}
+				||
+				{sustain bottleNumber1(#orderNumber);}
+			}
+		}
+	}
+	||
+	{ // Conveyor reaction 
+		while(true){
+			await(loadBotlle);
+			abort(immediate (!loadBotlle)){
+				System.out.println("bottleAtLoad");
+				sustain enableConveyor;
 			}
 		}
 	}
 	||
 	{ // Filler reaction 
 		while(true){
-			await(bottleAtPos2);
+			await(bottleAtPos2 && jobDoneRotary);
 			abort(immediate (!bottleAtPos2)){
 				System.out.println("bottleAtPos2");
 				sustain enableFiller;
@@ -28,7 +82,7 @@ ControllerMain(
 	||
 	{ // Caploader reaction 
 		while(true){
-			await(bottleAtPos3);
+			await(bottleAtPos3 && jobDoneRotary);
 			abort(immediate (!bottleAtPos3)){
 				System.out.println("bottleAtPos3");
 				sustain enableCapLoader;
@@ -38,7 +92,7 @@ ControllerMain(
 	||
 	{ // Capper Reaction
 		while(true){
-			await(bottleAtPos4);
+			await(bottleAtPos4 && jobDoneRotary);
 			abort(immediate (!bottleAtPos4)){
 				System.out.println("bottleAtPos4");
 				sustain enableCapper;

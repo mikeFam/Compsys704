@@ -1,7 +1,8 @@
 PlantRotaryTable(
 		input signal rotaryTableTrigger;
+		input Integer signal bottleNumber;
 		input signal enable, refill, alignedSensor, capAtPos1, bottlePos5;
-		output signal tableAlignedWithSensor, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, capOnBottleAtPos1;
+		output signal tableAlignedWithSensor, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, capOnBottleAtPos1, jobDone;
 		output signal tableAlignedWithSensorE, bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, capOnBottleAtPos1E;
 		output signal bottleAtPos1M, bottleAtPos2M, bottleAtPos3M, bottleAtPos4M, bottleAtPos5M;
 		input signal enableRotaryTable;
@@ -23,12 +24,10 @@ PlantRotaryTable(
 	{//RotaryTable
 		while(true){
 			abort (immediate (rotaryTableTrigger && enable)){
-				System.out.println("rotaryOff");
 				sustain rotaryOff;
 			}
 			await(!enable);
 			abort(immediate (!rotaryTableTrigger && enable)){
-				System.out.println("rotaryOn");
 				sustain rotaryOn;
 			}
 			await(!enable);
@@ -62,35 +61,48 @@ PlantRotaryTable(
 			abort(immediate (!enableRotaryTable)){
 				if((Integer)#bottlePos == 0){
 					abort(bottleAt2){
-						System.out.println("hi1");
-						sustain bottleAtPos1;
+						{sustain bottleAtPos1;}
+						||
+						{sustain bottleAtPos1M;}
 					}
 				}
-				if((Integer)#bottlePos == 1){
+				else if((Integer)#bottlePos == 1){
 					abort(bottleAt3){
-						System.out.println("hi2");
-						sustain bottleAtPos2;
+						{sustain bottleAtPos2;}
+						||
+						{sustain jobDone;}
+						||
+						{sustain bottleAtPos2M;}
 					}
 				}
 				else if((Integer)#bottlePos == 2){
 					abort(bottleAt4){
-						System.out.println("hi3");
-						sustain bottleAtPos3;
+						{sustain bottleAtPos3;}
+						||
+						{sustain jobDone;}
+						||
+						{sustain bottleAtPos3M;}
 					}
 				}
 				else if((Integer)#bottlePos == 3){
 					abort(bottleAt5){
-						System.out.println("hi4");
-						sustain bottleAtPos4;
+						{sustain bottleAtPos4;}
+						||
+						{sustain jobDone;}
+						||
+						{sustain bottleAtPos4M;}
 					}
 				}
 				else if((Integer)#bottlePos == 4){
 					abort(bottleAt1){
-						System.out.println("hi5");
-						sustain bottleAtPos5;
+						{sustain bottleAtPos5;}
+						||
+						{sustain jobDone;}
+						||
+						{sustain bottleAtPos5M;}
 					}
 				}
-				pause;	
+				pause;		
 			}
 		}
 	}
@@ -110,31 +122,26 @@ PlantRotaryTable(
 				while(true){
 					emit bottlePos(0);
 					emit bottleAt1;
-					System.out.println("Hello1");
 					await(rotaryOn && bottleAtPos1 && enable);
 					// At pos 2
 					emit bottlePos(1);
 					emit bottleAt2;
-					System.out.println("Hello2");
 					await (!enable);
 					await(rotaryOn && bottleAtPos2 && enable);
 					// At pos 3
 					emit bottlePos(2);
 					emit bottleAt3;
-					System.out.println("Hello3");
 					await (!enable);
 					await(rotaryOn && bottleAtPos3 && enable);
 					// At pos 4
 					emit bottlePos(3);
 					emit bottleAt4;
-					System.out.println("Hello4");
 					await (!enable);
 					await(rotaryOn && bottleAtPos4 && enable);
 					// At pos 5
 					emit bottlePos(4);
 					pause;
 					emit bottleAt5;
-					System.out.println("Hello5");
 					await (!enable);
 					emit bottleDec;
 				}
@@ -144,14 +151,16 @@ PlantRotaryTable(
 	}
 	||
 	{
-		int bottlecount = 10;
+		int bottlecount;
 		while(true){
+			await (bottleNumber);
+			bottlecount = (Integer) #bottleNumber;
 			present(bottleDec){
 				if(bottlecount > 0)
 					bottlecount--;
 			}
 			present(refill){
-				bottlecount = 5;
+				bottlecount = (Integer) #bottleNumber;
 			}
 			if(bottlecount == 0)
 			emit empty;
@@ -175,17 +184,5 @@ PlantRotaryTable(
 		{while(true){present(bottleAtPos4){emit bottleAtPos4E;} pause;}}
 		||
 		{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
-	}
-	||
-	{// To Main
-		{while(true){present(bottleAtPos1){emit bottleAtPos1M;} pause;}}
-		||
-		{while(true){present(bottleAtPos2){emit bottleAtPos2M;} pause;}}
-		||
-		{while(true){present(bottleAtPos3){emit bottleAtPos3M;} pause;}}
-		||
-		{while(true){present(bottleAtPos4){emit bottleAtPos4M;} pause;}}
-		||
-		{while(true){present(bottleAtPos5){emit bottleAtPos5M;} pause;}}
 	}
 }

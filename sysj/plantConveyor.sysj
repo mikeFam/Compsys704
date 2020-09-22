@@ -1,8 +1,10 @@
 PlantConveyor(
-		input signal motConveyorOnOff;
+		input signal motConveyorOnOff, enableConveyor;
 		input signal enable, refill;
+		input Integer signal bottleNumber;
 		output signal bottleAtLoad, bottleAtPos1, bottleLeftPos5;
 		output signal bottleAtLoadE, bottleAtPos1E, bottleLeftPos5E;
+		output signal bottleAtPos1M;
 		)
 ->
 {
@@ -34,6 +36,8 @@ PlantConveyor(
 	{
 		while(true){
 		int data = #bottlePos;
+			await(enableConveyor);
+			abort(immediate (!enableConveyor)){
 			if((Integer)#bottlePos == 0){
 				abort(bottleAt1){
 					System.out.println("bottleAtLoad");
@@ -43,7 +47,9 @@ PlantConveyor(
 			else if((Integer)#bottlePos == 1){
 				abort(bottleAt5){
 					System.out.println("bottleAtPos1");
-					sustain bottleAtPos1;
+					{sustain bottleAtPos1;}
+					||
+					{sustain bottleAtPos1M;}
 				}
 			}
 			else if((Integer)#bottlePos == 2){
@@ -53,6 +59,7 @@ PlantConveyor(
 				}
 			}
 			pause;
+			}
 		}
 	}
 	||
@@ -85,14 +92,16 @@ PlantConveyor(
 	}
 	||
 	{
-		int bottlecount = 5;
+		int bottlecount;
 		while(true){
+			await (bottleNumber);
+			bottlecount = (Integer) #bottleNumber;
 			present(bottleDec){
 				if(bottlecount > 0)
 					bottlecount--;
 			}
 			present(refill){
-				bottlecount = 5;
+				bottlecount = (Integer) #bottleNumber;
 			}
 			if(bottlecount == 0)
 			emit empty;

@@ -1,9 +1,9 @@
 package org.compsys704;
 public class PortsCapper {
 	public static final String ENABLE_SIGNAL = "PlantCapperCD.enable";
-	public static final int PORT_LOADER_PLANT = 10001;
-	public static final int PORT_LOADER_CONTROLLER = 10000;
-	public static final int PORT_LOADER_VIZ = 20000;
+	public static final int PORT_LOADER_PLANT = 50101;
+	public static final int PORT_LOADER_CONTROLLER = 50100;
+	public static final int PORT_LOADER_VIZ = 20002;
 	
 	// Manual 
 	public static final String SIGNAL_GRIPPER_EXTEND   = "ControllerCapperCD.cylPos5ZaxisExtendM";

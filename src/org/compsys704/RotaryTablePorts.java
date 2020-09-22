@@ -6,9 +6,9 @@ public class RotaryTablePorts {
 	public static final String BOTTLE_POS_5_SIGNAL = "PlantRotaryTableCD.bottlePos5";
 	public static final String ENABLE_SIGNAL = 	"PlantRotaryTableCD.enable";
 	public static final String REFILL_SIGNAL = 	"PlantRotaryTableCD.refill";
-	public static final int PORT_LOADER_PLANT = 10001;
-	public static final int PORT_LOADER_CONTROLLER = 10000;
-	public static final int PORT_LOADER_VIZ = 20000;
+	public static final int PORT_LOADER_PLANT = 50201;
+	public static final int PORT_LOADER_CONTROLLER = 50200;
+	public static final int PORT_LOADER_VIZ = 20003;
 	
 	// Manual 
 	public static final String SIGNAL_ROTARY_ON  = "ControllerRotaryTableCD.rotaryTableTriggerM";

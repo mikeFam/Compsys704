@@ -28,10 +28,8 @@ ControllerCapLoader(
 			await(selectA);
 			abort(selectM){
 				await(bottleAtPos3);
-				System.out.println("Hello1");
 				abort(immediate (!bottleAtPos3)){
 					await(request && !empty);
-					System.out.println("Hello2");
 					abort(pusherExtended){
 						sustain pusherExtend;
 					}
@@ -47,7 +45,6 @@ ControllerCapLoader(
 						{await (WPgripped);
 						sustain armDest;}
 					}
-					System.out.println("Hello4");
 					sustain jobDone;
 				}
 			}

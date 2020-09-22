@@ -1,12 +1,28 @@
 <System xmlns="http://systemjtechnology.com">
 	<SubSystem Name="SS12" Local="true">
 		<ClockDomain Name="ControllerMainCD" Class="ControllerMain">
+			<iSignal Name="bottleAtPos1" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="bottleAtPos2" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="bottleAtPos3" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="bottleAtPos4" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="bottleAtPos5" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="bottleLeftPos5" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
 		
+			<iSignal Name="jobDoneRotary" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="jobFillerDone" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="jobCapperDone" 		 											Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
+			<iSignal Name="jobCapLoaderDone" 		 										Class="com.systemj.ipc.SimpleServer" IP="127.0.0.1" Port="50000" />
 		
-			<oSignal Name="enableFiller"     	To="PlantFillerCD.enableFiller" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="enableCapLoader" 	To="PlantCapLoaderCD.enableCapLoader" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="enableCapper"     	To="PlantCapperCD.enableCapper" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
-			<oSignal Name="enableRotaryTable"   To="PlantRotaryTableCD.enableRotaryTable" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="10001" />
+			<oSignal Name="bottleNumber"     	To="PlantConveyorCD.bottleNumber" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="60001" />
+			<oSignal Name="bottleNumber1"     	To="PlantRotaryTableCD.bottleNumber" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50201" />
+			
+			<oSignal Name="enableFiller"     	To="PlantFillerCD.enableFiller" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50301" />
+			<oSignal Name="enableCapLoader" 	To="PlantCapLoaderCD.enableCapLoader" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50401" />
+			<oSignal Name="enableCapper"     	To="PlantCapperCD.enableCapper" 			Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50101" />
+			<oSignal Name="enableRotaryTable"   To="PlantRotaryTableCD.enableRotaryTable" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50201" />
+			<oSignal Name="enableConveyor"  	To="PlantConveyorCD.enableConveyor" 		Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="60001" />
+			
+			<oSignal Name="enableRotaryTableC"  To="ControllerRotaryTableCD.enableRotaryTable" 	Class="com.systemj.ipc.SimpleClient" IP="127.0.0.1" Port="50200" />
 		</ClockDomain>
 	</SubSystem>
 </System>

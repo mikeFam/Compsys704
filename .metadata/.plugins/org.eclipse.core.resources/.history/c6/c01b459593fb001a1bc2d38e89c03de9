@@ -1,0 +1,48 @@
+ControllerMain(
+		input signal jobDoneConveyor, jobDoneRotary, jobDoneFiller, jobDoneCapper, jobDoneCapLoader;
+		input signal enable;
+		input signal bottleAtLoad, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, bottleLeftPos5;
+		output signal enableCapLoader, enableFiller, enableCapper;
+		)
+->
+{	
+	{
+		while(true){
+			await(bottleAtPos1);
+			abort(immediate (!bottleAtPos1)){
+				System.out.println("bottleAtPos1");
+				sustain enableRotaryTable;
+			}
+		}
+	}
+	||
+	{
+		while(true){
+			await(bottleAtPos2);
+			abort(immediate (!bottleAtPos2)){
+				System.out.println("bottleAtPos2");
+				sustain enableFiller;
+			}
+		}
+	}
+	||
+	{
+		while(true){
+			await(bottleAtPos3);
+			abort(immediate (!bottleAtPos3)){
+				System.out.println("bottleAtPos3");
+				sustain enableCapLoader;
+			}
+		}
+	}
+	||
+	{
+		while(true){
+			await(bottleAtPos4);
+			abort(immediate (!bottleAtPos4)){
+				System.out.println("bottleAtPos4");
+				sustain enableCapper;
+			}
+		}
+	}
+}

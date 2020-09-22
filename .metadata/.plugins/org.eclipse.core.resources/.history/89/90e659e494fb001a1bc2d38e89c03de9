@@ -1,0 +1,188 @@
+PlantRotaryTable(
+		input signal rotaryTableTrigger;
+		input signal enable, refill, alignedSensor, capAtPos1, bottlePos5;
+		output signal tableAlignedWithSensor, bottleAtPos1, bottleAtPos2, bottleAtPos3, bottleAtPos4, bottleAtPos5, capOnBottleAtPos1;
+		output signal tableAlignedWithSensorE, bottleAtPos1E, bottleAtPos2E, bottleAtPos3E, bottleAtPos4E, bottleAtPos5E, capOnBottleAtPos1E;
+		output signal bottleAtPos1M, bottleAtPos2M, bottleAtPos3M, bottleAtPos4M, bottleAtPos5M;
+		input signal enableRotaryTable;
+		)
+->
+{
+	class GUI implements java.lang.Runnable {
+		public void run() {
+			org.compsys704.RotaryTable.main(null);
+		}
+	}
+	new Thread(new GUI()).start();
+	
+	signal bottleDec, bottleAt1, bottleAt2, bottleAt3, bottleAt4, bottleAt5, empty;
+	signal rotaryOn, rotaryOff;
+	int signal bottlePos;
+	emit bottlePos(0);
+	
+	{//RotaryTable
+		while(true){
+			abort (immediate (rotaryTableTrigger && enable)){
+				System.out.println("rotaryOff");
+				sustain rotaryOff;
+			}
+			await(!enable);
+			abort(immediate (!rotaryTableTrigger && enable)){
+				System.out.println("rotaryOn");
+				sustain rotaryOn;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{//AlignedSensor
+		while(true){
+			await(alignedSensor);
+			abort (immediate (!alignedSensor && enable)){
+				sustain tableAlignedWithSensor;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{//capAtPos1
+		while(true){
+			await(capAtPos1);
+			abort (immediate (!capAtPos1 && enable)){
+				sustain capOnBottleAtPos1;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{//Bottle
+		while(true){
+			await(enableRotaryTable);
+			abort (immediate (!enableRotaryTable && enable)){
+				sustain bottleAtPos1;
+			}
+			await(!enable);
+		}
+	}
+	||
+	{
+		while(true){
+		int data = #bottlePos;
+			if((Integer)#bottlePos == 0){
+				abort(bottleAt2){
+					sustain bottleAtPos1;
+				}
+			}
+			else if((Integer)#bottlePos == 1){
+				abort(bottleAt3){
+					sustain bottleAtPos2;
+				}
+			}
+			else if((Integer)#bottlePos == 2){
+				abort(bottleAt4){
+					sustain bottleAtPos3;
+				}
+			}
+			else if((Integer)#bottlePos == 3){
+				abort(bottleAt5){
+					sustain bottleAtPos4;
+				}
+			}
+			else if((Integer)#bottlePos == 4){
+				abort(bottleAt1){
+					sustain bottleAtPos5;
+				}
+			}
+			pause;	
+		}
+	}
+	||
+	{
+		/*
+		 * Bottle positions
+		 * 0 = at Pos1
+		 * 1 = at Pos2
+		 * 2 = at Pos3
+		 * 3 = at Pos4
+		 * 4 = at Pos5
+		 */
+		while(true){
+			// At Load
+			abort(empty){
+				while(true){
+					emit bottlePos(0);
+					emit bottleAt1;
+					await(rotaryOn && bottleAtPos1 && enable);
+					// At pos 2
+					emit bottlePos(1);
+					emit bottleAt2;
+					await (!enable);
+					await(rotaryOn && bottleAtPos2 && enable);
+					// At pos 3
+					emit bottlePos(2);
+					emit bottleAt3;
+					await (!enable);
+					await(rotaryOn && bottleAtPos3 && enable);
+					// At pos 4
+					emit bottlePos(3);
+					emit bottleAt4;
+					await (!enable);
+					await(rotaryOn && bottleAtPos4 && enable);
+					// At pos 5
+					emit bottlePos(4);
+					pause;
+					emit bottleAt5;
+					await (!enable);
+					emit bottleDec;
+				}
+			}
+			await(refill);
+		}
+	}
+	||
+	{
+		int bottlecount = 10;
+		while(true){
+			present(bottleDec){
+				if(bottlecount > 0)
+					bottlecount--;
+			}
+			present(refill){
+				bottlecount = 5;
+			}
+			if(bottlecount == 0)
+			emit empty;
+			pause;
+		}
+	}
+	||
+	{// To viz
+		{while(true){present(tableAlignedWithSensor){emit tableAlignedWithSensorE;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
+		||
+		{while(true){present(capOnBottleAtPos1){emit capOnBottleAtPos1E;} pause;}}
+		||
+		{while(true){present(bottleAtPos1){emit bottleAtPos1E;} pause;}}
+		||
+		{while(true){present(bottleAtPos2){emit bottleAtPos2E;} pause;}}
+		||
+		{while(true){present(bottleAtPos3){emit bottleAtPos3E;} pause;}}
+		||
+		{while(true){present(bottleAtPos4){emit bottleAtPos4E;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5E;} pause;}}
+	}
+	||
+	{// To Main
+		{while(true){present(bottleAtPos1){emit bottleAtPos1M;} pause;}}
+		||
+		{while(true){present(bottleAtPos2){emit bottleAtPos2M;} pause;}}
+		||
+		{while(true){present(bottleAtPos3){emit bottleAtPos3M;} pause;}}
+		||
+		{while(true){present(bottleAtPos4){emit bottleAtPos4M;} pause;}}
+		||
+		{while(true){present(bottleAtPos5){emit bottleAtPos5M;} pause;}}
+	}
+}
